@@ -1,9 +1,0 @@
-J:\git\FlixOne\FlixOne.InventoryManagement\bin\Debug\netstandard2.0\FlixOne.InventoryManagement.deps.json
-J:\git\FlixOne\FlixOne.InventoryManagement\bin\Debug\netstandard2.0\FlixOne.InventoryManagement.dll
-J:\git\FlixOne\FlixOne.InventoryManagement\bin\Debug\netstandard2.0\FlixOne.InventoryManagement.pdb
-J:\git\FlixOne\FlixOne.InventoryManagement\obj\Debug\netstandard2.0\FlixOne.InventoryManagement.csprojAssemblyReference.cache
-J:\git\FlixOne\FlixOne.InventoryManagement\obj\Debug\netstandard2.0\FlixOne.InventoryManagement.csproj.CoreCompileInputs.cache
-J:\git\FlixOne\FlixOne.InventoryManagement\obj\Debug\netstandard2.0\FlixOne.InventoryManagement.AssemblyInfoInputs.cache
-J:\git\FlixOne\FlixOne.InventoryManagement\obj\Debug\netstandard2.0\FlixOne.InventoryManagement.AssemblyInfo.cs
-J:\git\FlixOne\FlixOne.InventoryManagement\obj\Debug\netstandard2.0\FlixOne.InventoryManagement.dll
-J:\git\FlixOne\FlixOne.InventoryManagement\obj\Debug\netstandard2.0\FlixOne.InventoryManagement.pdb
