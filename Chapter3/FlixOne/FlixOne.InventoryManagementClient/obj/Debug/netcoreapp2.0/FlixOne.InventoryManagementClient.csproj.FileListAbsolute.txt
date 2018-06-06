@@ -1,0 +1,14 @@
+J:\git\FlixOne\FlixOne.InventoryManagementClient\bin\Debug\netcoreapp2.0\FlixOne.InventoryManagementClient.deps.json
+J:\git\FlixOne\FlixOne.InventoryManagementClient\bin\Debug\netcoreapp2.0\FlixOne.InventoryManagementClient.runtimeconfig.json
+J:\git\FlixOne\FlixOne.InventoryManagementClient\bin\Debug\netcoreapp2.0\FlixOne.InventoryManagementClient.runtimeconfig.dev.json
+J:\git\FlixOne\FlixOne.InventoryManagementClient\bin\Debug\netcoreapp2.0\FlixOne.InventoryManagementClient.dll
+J:\git\FlixOne\FlixOne.InventoryManagementClient\bin\Debug\netcoreapp2.0\FlixOne.InventoryManagementClient.pdb
+J:\git\FlixOne\FlixOne.InventoryManagementClient\bin\Debug\netcoreapp2.0\FlixOne.InventoryManagement.dll
+J:\git\FlixOne\FlixOne.InventoryManagementClient\bin\Debug\netcoreapp2.0\FlixOne.InventoryManagement.pdb
+J:\git\FlixOne\FlixOne.InventoryManagementClient\obj\Debug\netcoreapp2.0\FlixOne.InventoryManagementClient.csprojAssemblyReference.cache
+J:\git\FlixOne\FlixOne.InventoryManagementClient\obj\Debug\netcoreapp2.0\FlixOne.InventoryManagementClient.csproj.CoreCompileInputs.cache
+J:\git\FlixOne\FlixOne.InventoryManagementClient\obj\Debug\netcoreapp2.0\FlixOne.InventoryManagementClient.AssemblyInfoInputs.cache
+J:\git\FlixOne\FlixOne.InventoryManagementClient\obj\Debug\netcoreapp2.0\FlixOne.InventoryManagementClient.AssemblyInfo.cs
+J:\git\FlixOne\FlixOne.InventoryManagementClient\obj\Debug\netcoreapp2.0\FlixOne.InventoryManagementClient.csproj.CopyComplete
+J:\git\FlixOne\FlixOne.InventoryManagementClient\obj\Debug\netcoreapp2.0\FlixOne.InventoryManagementClient.dll
+J:\git\FlixOne\FlixOne.InventoryManagementClient\obj\Debug\netcoreapp2.0\FlixOne.InventoryManagementClient.pdb
