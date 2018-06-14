@@ -23,36 +23,11 @@ namespace FlixOne.InventoryManagementTests
         [TestMethod]
         public void UpdateQuantity_ExistingBook_Successful()
         {
-            const string expectedBookName = "UpdateQuantityUnitTest";
-            var expectedInterface = new Helpers.TestUserInterface(
-                new List<Tuple<string, string>>
-                {
-                    new Tuple<string, string>("Enter name:", expectedBookName),
-                    new Tuple<string, string>("Enter quantity:", "6")
-                },
-                new List<string>(),
-                new List<string>()
-            );
-
-            var context = new TestInventoryContext(new Dictionary<string, Book>
-            {
-                { expectedBookName, new Book { Id = 1, Name = expectedBookName, Quantity = 7 } }
-            });
-
             // create an instance of the command
-            var command = new UpdateQuantityCommand(expectedInterface, context);
-            
-            var result = command.RunCommand();
+            // add a new book with parameter "name"
+            // verify the book was added with the given name with 0 quantity
 
-            Assert.IsFalse(result.shouldQuit, "UpdateQuantity is not a terminating command.");
-            Assert.IsTrue(result.wasSuccessful, "UpdateQuantity did not complete Successfully.");
-            
-            Assert.AreEqual(0, context.GetAddedBooks().Length, "UpdateQuantity should not have added one new book.");
-
-            var updatedBooks = context.GetUpdatedBooks();
-            Assert.AreEqual(1, updatedBooks.Length, "UpdateQuantity should have updated one new book.");
-            Assert.AreEqual(expectedBookName, updatedBooks.First().Name, "UpdateQuantity did not add book successfully.");
-            Assert.AreEqual(13, updatedBooks.First().Quantity, "UpdateQuantity did not update book quantity successfully.");
+            Assert.Inconclusive("UpdateQuantity_ExistingBook_Successful has not been implemented.");
         }
     }
 }

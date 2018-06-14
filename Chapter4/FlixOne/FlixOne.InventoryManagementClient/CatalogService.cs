@@ -10,24 +10,26 @@ namespace FlixOne.InventoryManagementClient
     }
     public class CatalogService : ICatalogService
     {
-        private readonly IUserInterface _userInterface;        
+        private readonly IUserInterface _userInterface;
+        private readonly IInventoryCommandFactory _commandFactory;
 
-        public CatalogService(IUserInterface userInterface)
+        public CatalogService(IUserInterface userInterface, IInventoryCommandFactory commandFactory)
         {
-            _userInterface = userInterface;            
+            _userInterface = userInterface;
+            _commandFactory = commandFactory;
         }
 
         public void Run()
         {
             Greeting();
 
-            var response = GetCommand("?").RunCommand();
+            var response = _commandFactory.GetCommand("?").RunCommand();
 
             while (!response.shouldQuit)
             {
                 // look at this mistake with the ToLower()
                 var input = _userInterface.ReadValue("> ").ToLower();
-                var command = GetCommand(input);
+                var command = _commandFactory.GetCommand(input);
 
                 response = command.RunCommand();
 
@@ -49,29 +51,6 @@ namespace FlixOne.InventoryManagementClient
             _userInterface.WriteMessage($"*                                                                                v{version}   *");
             _userInterface.WriteMessage( "*********************************************************************************************");
             _userInterface.WriteMessage( "");
-        }
-
-        public InventoryCommand GetCommand(string input)
-        {
-            switch (input)
-            {
-                case "q":
-                case "quit":
-                    return new QuitCommand(_userInterface);
-                case "a":
-                case "addinventory":
-                    return new AddInventoryCommand(_userInterface);
-                case "g":
-                case "getinventory":
-                    return new GetInventoryCommand(_userInterface);
-                case "u":
-                case "updatequantity":
-                    return new UpdateQuantityCommand(_userInterface);
-                case "?":
-                    return new HelpCommand(_userInterface);
-                default:
-                    return new UnknownCommand(_userInterface);
-            }
         }
     }
 }

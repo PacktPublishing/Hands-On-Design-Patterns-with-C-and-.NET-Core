@@ -3,9 +3,9 @@ using System;
 
 namespace FlixOne.InventoryManagement.Command
 {
-    public class UnknownCommand : NonTerminatingCommand
-    {
-        public UnknownCommand(IUserInterface userInterface) : base(userInterface)
+    internal class UnknownCommand : NonTerminatingCommand
+    {        
+        internal UnknownCommand(IUserInterface userInterface) : base(userInterface)
         {
         }
 

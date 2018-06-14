@@ -1,13 +1,15 @@
-﻿using System;
+﻿using FlixOne.InventoryManagement.Repository;
 using FlixOne.InventoryManagement.UserInterface;
 
 namespace FlixOne.InventoryManagement.Command
 {
-    public class UpdateQuantityCommand : NonTerminatingCommand, IParameterisedCommand
+    internal class UpdateQuantityCommand : NonTerminatingCommand, IParameterisedCommand
     {
+        private readonly IInventoryContext _context;        
 
-        public UpdateQuantityCommand(IUserInterface userInterface) : base(userInterface)
-        {            
+        internal UpdateQuantityCommand(IUserInterface userInterface, IInventoryContext context) : base(userInterface)
+        {
+            _context = context;
         }
 
         internal string InventoryName { get; private set; }
@@ -32,7 +34,7 @@ namespace FlixOne.InventoryManagement.Command
 
         protected override bool InternalCommand()
         {
-            throw new NotImplementedException("Implemented in next chapter!");
+            return _context.UpdateQuantity(InventoryName, Quantity);
         }
     }
 }

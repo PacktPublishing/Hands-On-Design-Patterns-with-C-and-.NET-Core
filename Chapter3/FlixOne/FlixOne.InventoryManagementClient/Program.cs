@@ -9,23 +9,11 @@ namespace FlixOne.InventoryManagementClient
     {
         private static void Main(string[] args)
         {
-            IServiceCollection services = new ServiceCollection();
-            ConfigureServices(services);
-            IServiceProvider serviceProvider = services.BuildServiceProvider();
-
-            var service = serviceProvider.GetService<ICatalogService>();
+            var service = new CatalogService(new ConsoleUserInterface());            
             service.Run();
 
             Console.WriteLine("CatalogService has completed.");
             Console.ReadLine();
-        }
-
-        private static void ConfigureServices(IServiceCollection services)
-        {
-            // Add application services.
-            services.AddTransient<IUserInterface, ConsoleUserInterface>();            
-            services.AddTransient<ICatalogService, CatalogService>();
-            services.AddTransient<IInventoryCommandFactory, InventoryCommandFactory>();            
-        }
+        }        
     }
 }
