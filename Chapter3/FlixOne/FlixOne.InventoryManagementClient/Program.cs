@@ -1,7 +1,4 @@
 ﻿using System;
-using FlixOne.InventoryManagement.Command;
-using FlixOne.InventoryManagement.UserInterface;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace FlixOne.InventoryManagementClient
 {

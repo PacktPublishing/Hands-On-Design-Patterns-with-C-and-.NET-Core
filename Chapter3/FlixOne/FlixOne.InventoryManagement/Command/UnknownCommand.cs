@@ -1,5 +1,4 @@
 ﻿using FlixOne.InventoryManagement.UserInterface;
-using System;
 
 namespace FlixOne.InventoryManagement.Command
 {

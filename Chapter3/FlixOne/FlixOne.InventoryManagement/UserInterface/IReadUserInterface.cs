@@ -1,7 +1,7 @@
 ﻿namespace FlixOne.InventoryManagement.UserInterface
 {
-public interface IReadUserInterface
-{
-    string ReadValue(string message);
-}
+    public interface IReadUserInterface
+    {
+        string ReadValue(string message);
+    }
 }

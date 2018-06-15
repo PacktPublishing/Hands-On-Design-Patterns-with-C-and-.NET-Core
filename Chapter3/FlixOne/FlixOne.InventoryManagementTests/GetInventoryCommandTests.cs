@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using FlixOne.InventoryManagement.Command;
-using FlixOne.InventoryManagement.Models;
-using FlixOne.InventoryManagementTests.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FlixOne.InventoryManagementTests
