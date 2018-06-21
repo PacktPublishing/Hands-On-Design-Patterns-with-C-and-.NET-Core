@@ -50,7 +50,6 @@ namespace FlixOne.InventoryManagementTests
             Assert.AreEqual(1, context.GetAddedBooks().Length, "AddInventory should have added one new book.");
 
             var newBook = context.GetAddedBooks().First();
-
             Assert.AreEqual(expectedBookName, newBook.Name, "AddInventory did not add book successfully.");            
         }
     }

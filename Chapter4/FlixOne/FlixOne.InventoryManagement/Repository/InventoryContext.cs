@@ -5,43 +5,43 @@ using FlixOne.InventoryManagement.Models;
 
 namespace FlixOne.InventoryManagement.Repository
 {
-    // https://msdn.microsoft.com/en-us/library/ff649690.aspx
     internal interface IInventoryContext
     {
         Book[] GetBooks();
         bool AddBook(string name);
         bool UpdateQuantity(string name, int quantity);
     }
-    
-internal class InventoryContext : IInventoryContext
-{     
-    protected InventoryContext()
-    {
-        _books = new ConcurrentDictionary<string, Book>();
-    }
 
-    private static InventoryContext _instance;
-        private static object _lock = new object();
-public static InventoryContext Instance
-{
-    get
-    {                
-        if (_instance == null)
+    internal class InventoryContext : IInventoryContext
+    {
+        protected InventoryContext()
         {
-            lock (_lock)
+            _books = new ConcurrentDictionary<string, Book>();
+        }
+
+        private static InventoryContext _instance;
+        private static object _lock = new object();
+
+        public static InventoryContext Instance
+        {
+            get
             {
                 if (_instance == null)
                 {
-                    _instance = new InventoryContext();
+                    lock (_lock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new InventoryContext();
+                        }
+                    }
                 }
+
+                return _instance;
             }
         }
-        
-        return _instance;
-    }
-}
-       
-    private readonly IDictionary<string, Book> _books;        
+
+        private readonly IDictionary<string, Book> _books;
 
         public Book[] GetBooks()
         {
@@ -50,13 +50,17 @@ public static InventoryContext Instance
 
         public bool AddBook(string name)
         {
-            _books.Add(name, new Book { Name = name });
+            _books.Add(name, new Book {Name = name});
             return true;
         }
 
         public bool UpdateQuantity(string name, int quantity)
         {
-            _books[name].Quantity += quantity;
+            lock (_lock)
+            {
+                _books[name].Quantity += quantity;
+            }
+
             return true;
         }
     }

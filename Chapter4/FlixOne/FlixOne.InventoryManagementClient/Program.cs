@@ -25,7 +25,7 @@ namespace FlixOne.InventoryManagementClient
             // Add application services.
             services.AddTransient<IUserInterface, ConsoleUserInterface>();            
             services.AddTransient<ICatalogService, CatalogService>();
-            services.AddTransient<IInventoryCommandFactory, InventoryCommandFactory>();            
+            services.AddTransient<IInventoryCommandFactory, InventoryCommandFactory>();                        
         }
     }
 }

@@ -36,7 +36,9 @@ namespace FlixOne.InventoryManagementTests
 
             var context = new TestInventoryContext(new Dictionary<string, Book>
             {
-                { expectedBookName, new Book { Id = 1, Name = expectedBookName, Quantity = 7 } }
+                { "Beavers", new Book { Id = 1, Name = "Beavers", Quantity = 3 } },
+                { expectedBookName, new Book { Id = 2, Name = expectedBookName, Quantity = 7 } },
+                { "Ducks", new Book { Id = 3, Name = "Ducks", Quantity = 12 } }
             });
 
             // create an instance of the command
@@ -51,7 +53,7 @@ namespace FlixOne.InventoryManagementTests
 
             var updatedBooks = context.GetUpdatedBooks();
             Assert.AreEqual(1, updatedBooks.Length, "UpdateQuantity should have updated one new book.");
-            Assert.AreEqual(expectedBookName, updatedBooks.First().Name, "UpdateQuantity did not add book successfully.");
+            Assert.AreEqual(expectedBookName, updatedBooks.First().Name, "UpdateQuantity did not update the correct book.");
             Assert.AreEqual(13, updatedBooks.First().Quantity, "UpdateQuantity did not update book quantity successfully.");
         }
     }

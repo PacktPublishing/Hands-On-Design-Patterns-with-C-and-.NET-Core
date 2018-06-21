@@ -35,11 +35,8 @@ namespace FlixOne.InventoryManagementTests
                 { "Gremlins", new Book { Id = 1, Name = "Gremlins", Quantity = 7 } },
                 { "Willowsong", new Book { Id = 2, Name = "Willowsong", Quantity = 3 } },
             });
-
-            // create an instance of the command
+            
             var command = new GetInventoryCommand(expectedInterface, context);
-
-            // add a new book with parameter "name"
             var result = command.RunCommand();
 
             Assert.IsFalse(result.shouldQuit, "GetInventory is not a terminating command.");

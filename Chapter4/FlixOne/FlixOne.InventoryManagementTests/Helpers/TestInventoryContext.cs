@@ -5,14 +5,13 @@ using FlixOne.InventoryManagement.Repository;
 
 namespace FlixOne.InventoryManagementTests.Helpers
 {
-    class TestInventoryContext :IInventoryContext
+    class TestInventoryContext: IInventoryContext
     {
         private readonly IDictionary<string, Book> _seedDictionary;
         private readonly IDictionary<string, Book> _books;
 
         public TestInventoryContext(IDictionary<string, Book> books)
         {
-            //_seedDictionary = new Dictionary<string, Book>(books);
             _seedDictionary = books.ToDictionary(book => book.Key,
                                                  book => new Book { Id = book.Value.Id, Name = book.Value.Name, Quantity = book.Value.Quantity });
             _books = books;
@@ -43,8 +42,7 @@ namespace FlixOne.InventoryManagementTests.Helpers
         }
 
         public Book[] GetUpdatedBooks()
-        {
-            //return _seedDictionary.Where(book => _books[book.Key].Quantity != book.Value.Quantity).Select(book => book.Value).ToArray();            
+        {            
             return _books.Where(book => _seedDictionary[book.Key].Quantity != book.Value.Quantity).Select(book => book.Value).ToArray();
         }
     }
