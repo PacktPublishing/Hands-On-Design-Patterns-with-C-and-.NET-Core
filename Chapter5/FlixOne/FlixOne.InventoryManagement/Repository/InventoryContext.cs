@@ -5,24 +5,18 @@ using FlixOne.InventoryManagement.Models;
 
 namespace FlixOne.InventoryManagement.Repository
 {
-    public interface IInventoryReadContext
-    {
-        Book[] GetBooks();        
-    }
 
-    public interface IInventoryWriteContext
-    {
-        bool AddBook(string name);
-        bool UpdateQuantity(string name, int quantity);
-    }
-
-    public class InventoryContext : IInventoryWriteContext, IInventoryReadContext
+    public class InventoryContext : IInventoryContext
     {
         public string Name { get; set; }
 
         public InventoryContext()
         {
             _books = new ConcurrentDictionary<string, Book>();
+
+            //_books = config.GetChildren()
+            //               .Select((c, i) => new Book { Id = i, Name = c.Key, Quantity = int.Parse(c.Value) })
+            //               .ToDictionary(b => b.Name, b => b);
         }
 
         private readonly object _lock = new object();        

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using FlixOne.InventoryManagement.Command;
 using FlixOne.InventoryManagement.UserInterface;
 
@@ -11,25 +12,25 @@ namespace FlixOne.InventoryManagementClient
     public class CatalogService : ICatalogService
     {
         private readonly IUserInterface _userInterface;
-        private readonly IInventoryCommandFactory _commandFactory;
+        private readonly Func<string, InventoryCommand> _commandFactory;
 
-        public CatalogService(IUserInterface userInterface, IInventoryCommandFactory commandFactory)
-        {
-            _userInterface = userInterface;
-            _commandFactory = commandFactory;
-        }
+public CatalogService(IUserInterface userInterface, Func<string, InventoryCommand> commandFactory)
+{
+    _userInterface = userInterface;
+    _commandFactory = commandFactory;
+}
 
         public void Run()
         {
             Greeting();
 
-            var response = _commandFactory.GetCommand("?").RunCommand();
+            var response = _commandFactory("?").RunCommand();
 
             while (!response.shouldQuit)
             {
                 // look at this mistake with the ToLower()
                 var input = _userInterface.ReadValue("> ").ToLower();
-                var command = _commandFactory.GetCommand(input);
+                var command = _commandFactory(input);
 
                 response = command.RunCommand();
 

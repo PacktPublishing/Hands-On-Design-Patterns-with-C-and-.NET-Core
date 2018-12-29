@@ -1,5 +1,6 @@
 ﻿using FlixOne.InventoryManagement.Repository;
 using FlixOne.InventoryManagement.UserInterface;
+using System;
 
 namespace FlixOne.InventoryManagement.Command
 {
@@ -11,14 +12,12 @@ namespace FlixOne.InventoryManagement.Command
     public class InventoryCommandFactory : IInventoryCommandFactory
     {
         private readonly IUserInterface _userInterface;
-        private readonly IInventoryReadContext _readContext;
-        private readonly IInventoryWriteContext _writeContext;
+        private readonly IInventoryContext _context;        
 
-        public InventoryCommandFactory(IUserInterface userInterface, IInventoryReadContext readContext, IInventoryWriteContext writeContext)
+        public InventoryCommandFactory(IUserInterface userInterface, IInventoryContext context)
         {
             _userInterface = userInterface;
-            _readContext = readContext;
-            _writeContext = writeContext;
+            _context = context;            
         }
 
         public InventoryCommand GetCommand(string input)
@@ -30,13 +29,13 @@ namespace FlixOne.InventoryManagement.Command
                     return new QuitCommand(_userInterface);
                 case "a":
                 case "addinventory":
-                    return new AddInventoryCommand(_userInterface, _writeContext);
+                    return new AddInventoryCommand(_userInterface, _context);
                 case "g":
                 case "getinventory":
-                    return new GetInventoryCommand(_userInterface, _readContext);
+                    return new GetInventoryCommand(_userInterface, _context);
                 case "u":
                 case "updatequantity":
-                    return new UpdateQuantityCommand(_userInterface, _writeContext);
+                    return new UpdateQuantityCommand(_userInterface, _context);
                 case "?":
                     return new HelpCommand(_userInterface);
                 default:

@@ -32,7 +32,7 @@ namespace FlixOne.InventoryManagementTests
             );
 
             Context = new InventoryContext();
-            Factory = new InventoryCommandFactory(expectedInterface, Context, Context);
+            Factory = new InventoryCommandFactory(expectedInterface, Context);
         }
 
         [TestMethod]

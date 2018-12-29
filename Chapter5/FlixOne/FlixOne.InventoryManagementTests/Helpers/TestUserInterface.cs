@@ -5,7 +5,29 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FlixOne.InventoryManagementTests.Helpers
 {
-    class TestUserInterface : IUserInterface
+    internal class ConsoleUserInterface : IUserInterface
+    {
+        public string ReadValue(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(message);
+            return Console.ReadLine();
+        }
+
+        public void WriteMessage(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(message);
+        }
+
+        public void WriteWarning(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine(message);
+        }
+    }
+
+    public class TestUserInterface : IUserInterface
     {
         private readonly List<Tuple<string, string>> _expectedReadRequests;
         private readonly List<string> _expectedWriteMessageRequests;
