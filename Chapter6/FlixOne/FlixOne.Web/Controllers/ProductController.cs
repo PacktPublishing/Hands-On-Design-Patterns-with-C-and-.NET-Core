@@ -1,39 +1,47 @@
 ﻿using System;
+using FlixOne.Web.Common;
 using FlixOne.Web.Models;
-using Microsoft.AspNetCore.Http;
+using FlixOne.Web.Persistance;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlixOne.Web.Controllers
 {
     public class ProductController : Controller
     {
-       
-        public IActionResult Index()
-        {
-            return View();
-        }
+        private readonly IInventoryRepositry _inventoryRepositry;
 
+        public ProductController(IInventoryRepositry inventoryRepositry) => _inventoryRepositry = inventoryRepositry;
+
+        public IActionResult Index() => View(_inventoryRepositry.GetProducts().ToProductvm());
+
+        public IActionResult Details(Guid id) => View(_inventoryRepositry.GetProduct(id).ToProductvm());
         
-        public IActionResult Details(Guid id)
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
-       
-        public IActionResult Create()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create([FromBody] Product product)
         {
-            return View();
+            try
+            {
+                _inventoryRepositry.AddProduct(product);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
-
         
+        public IActionResult Edit(Guid id) => View(_inventoryRepositry.GetProduct(id));
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(IFormCollection collection)
+        public IActionResult Edit(Guid id, [FromBody] Product product)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                _inventoryRepositry.UpdateProduct(product);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -42,75 +50,21 @@ namespace FlixOne.Web.Controllers
             }
         }
 
-       
-        public IActionResult Edit(int id)
-        {
-            return View();
-        }
+        public IActionResult Delete(Guid id) => View(_inventoryRepositry.GetProduct(id));
 
-        // POST: Default/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, IFormCollection collection)
+        public IActionResult Delete(Guid id, [FromBody] Product product)
         {
             try
             {
-                // TODO: Add update logic here
-
+                _inventoryRepositry.RemoveProduct(product);
                 return RedirectToAction(nameof(Index));
             }
             catch
             {
                 return View();
             }
-        }
-
-       public IActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        private Product ToProductModel(ProductViewModel productvm)
-        {
-            return new Product
-            {
-                CategoryId = productvm.CategoryId,
-                Description = productvm.ProductDescription,
-                Id = productvm.ProductId,
-                Name = productvm.ProductName,
-                Price = productvm.ProductPrice
-            };
-        }
-
-        private ProductViewModel ToProductvm(Product productModel)
-        {
-            return new ProductViewModel
-            {
-                CategoryId = productModel.CategoryId,
-                CategoryDescription = productModel.Category.Description,
-                CategoryName = productModel.Category.Name,
-                ProductDescription = productModel.Description,
-                ProductId = productModel.Id,
-                ProductImage = productModel.Image,
-                ProductName = productModel.Name,
-                ProductPrice = productModel.Price
-            };
         }
     }
 }

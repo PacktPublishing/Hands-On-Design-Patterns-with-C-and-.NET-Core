@@ -1,36 +1,33 @@
 ﻿using System;
-using Microsoft.AspNetCore.Http;
+using FlixOne.Web.Models;
+using FlixOne.Web.Persistance;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlixOne.Web.Controllers
 {
     public class CategoryController: Controller
     {
-        public IActionResult Index()
+        private readonly IInventoryRepositry _inventoryRepositry;
+
+        public CategoryController(IInventoryRepositry inventoryRepositry)
         {
-            return View();
+            _inventoryRepositry = inventoryRepositry;
         }
 
+        public IActionResult Index() => View(_inventoryRepositry.GetCategories());
+        
+        public IActionResult Details(Guid id) => View(_inventoryRepositry.GetCategory(id));
 
-        public IActionResult Details(Guid id)
-        {
-            return View();
-        }
-
-
-        public IActionResult Create()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(IFormCollection collection)
+        public IActionResult Create([FromBody] Category category)
         {
             try
             {
-                // TODO: Add insert logic here
+                _inventoryRepositry.AddCategory(category);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -40,20 +37,15 @@ namespace FlixOne.Web.Controllers
             }
         }
 
+        public IActionResult Edit(Guid id) => View(_inventoryRepositry.GetCategory(id));
 
-        public IActionResult Edit(Guid id)
-        {
-            return View();
-        }
-
-        // POST: Default/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Guid id, IFormCollection collection)
+        public IActionResult Edit(Guid id, [FromBody]Category category)
         {
             try
             {
-                // TODO: Add update logic here
+                _inventoryRepositry.UpdateCategory(category);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -63,18 +55,15 @@ namespace FlixOne.Web.Controllers
             }
         }
 
-        public IActionResult Delete(Guid id)
-        {
-            return View();
-        }
+        public IActionResult Delete(Guid id) => View(_inventoryRepositry.GetCategory(id));
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(Guid id, IFormCollection collection)
+        public IActionResult Delete(Guid id, [FromBody] Category category)
         {
             try
             {
-                // TODO: Add delete logic here
+                _inventoryRepositry.RemoveCategory(category);
 
                 return RedirectToAction(nameof(Index));
             }
