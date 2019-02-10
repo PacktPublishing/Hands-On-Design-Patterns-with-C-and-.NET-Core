@@ -3,9 +3,7 @@ _A book with lot of practical and architectural styles for Microservices using .
 
 Hands-On Design Patterns with C# and .NET Core, published by Packt. 
 
-##	Chapter-7: Implementing Design Patterns for web applications - Part 2##
-*	What are the requirements?
-*	Creating a .Net Core Web Application
+##	Chapter-7: Implementing Design Patterns for web applications - Part 2 ##
 *	CRUD pages
 *	Authentication and Authorization, Page for viewing inventory types, Page for adding a new inventory,Page for viewing inventory quantity including Add Quantity and Remove Quantity
 *	Testing the web application
