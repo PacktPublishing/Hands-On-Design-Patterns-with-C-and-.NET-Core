@@ -4,7 +4,7 @@
     ViewData["Title"] = "View";
 }
 
-<h2>View</h2>
+<h2>Product Listing</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -28,10 +28,10 @@
             <th>
                 @Html.DisplayNameFor(model => model.CategoryName)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.CategoryDescription)
-            </th>
-            <th></th>
+            </th>*@
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
@@ -54,9 +54,9 @@
                 @Html.HiddenFor(modelItem => item.CategoryId)
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CategoryDescription)
-            </td>
+            </td>*@
             <td>
                 @Html.ActionLink("Edit", "Edit", new {  id=item.ProductId  }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
