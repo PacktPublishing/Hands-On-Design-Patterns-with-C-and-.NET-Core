@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using SimpleLogin.Models;
 using SimpleLogin.Persistance;
@@ -12,11 +14,11 @@ namespace SimpleLogin.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IUserManager _userManager;
+        private readonly IAuthManager _authManager;
 
-        public AccountController(IUserManager userManager)
+        public AccountController(IUserManager userManager, IAuthManager authManager)
         {
-            _userManager = userManager;
+            _authManager = authManager;
         }
 
         [HttpGet]
@@ -30,10 +32,12 @@ namespace SimpleLogin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = _userManager.Login(model);
+                var result = _authManager.Login(model);
 
                 if (result)
                 {
+                   // SignInCookie(model, user);
+
                     return !string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl)
                         ? (IActionResult)Redirect(model.ReturnUrl)
                         : RedirectToAction("Index", "Home");
@@ -42,6 +46,25 @@ namespace SimpleLogin.Controllers
             ModelState.AddModelError("", "Invalid login attempt");
             return View(model);
         }
+
+        private void SignInCookie(LoginViewModel model, User user)
+        {
+            var claims = new List<Claim> {new Claim(ClaimTypes.Name, user.UserName)};
+
+
+            string[] roles = user.Roles.Split(",");
+
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var principal = new ClaimsPrincipal(identity);
+
+            var props = new AuthenticationProperties {IsPersistent = model.RememberMe};
+
+            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
+        }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -61,7 +84,7 @@ namespace SimpleLogin.Controllers
                     EmailId = model.EmailId,
                     Mobile = model.Mobile
                 };
-                var result = _userManager.Add(user,model.Password);
+                var result = _authManager.Add(user,model.Password);
 
                 if (result)
                 {
@@ -71,10 +94,12 @@ namespace SimpleLogin.Controllers
             ModelState.AddModelError("", "Registration unsuccessful!");
             return View(model);
         }
-        [HttpPost]
-        public IActionResult Logout()
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
         {
-             return RedirectToAction("Index", "Home");
+            await _authManager.LogoutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -9,5 +9,6 @@ namespace SimpleLogin.Persistance
         bool Login(LoginViewModel authRequest);
         User FindBy(LoginViewModel authRequest);
         IEnumerable<User> Get(string searchTerm, bool isActive = true);
+        User GetBy(string userId);
     }
 }

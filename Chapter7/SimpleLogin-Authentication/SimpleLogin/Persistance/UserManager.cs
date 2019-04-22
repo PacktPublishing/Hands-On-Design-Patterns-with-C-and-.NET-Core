@@ -43,6 +43,11 @@ namespace SimpleLogin.Persistance
                 x.EmailId == searchTerm.ToLower() && x.IsActive == isActive);
         }
 
+        public User GetBy(string userId)
+        {
+            return _context.Users.Find(userId);
+        }
+
         private User CreateUser(User userModel, string userPassword)
         {
             var userName = CreateUserName(userModel.FirstName, userModel.LastName);

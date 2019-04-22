@@ -1,4 +1,4 @@
-﻿@using System.Security.Claims
+﻿@inject System.Security.Claims.IAuthManager AuthManager
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,9 +38,10 @@
                         </li>
                         <li class="nav-item">
                             @{
-                                if (User.Identities.Any(u => u.IsAuthenticated))
+                                if (AuthManager.IsAuthenticated)
                                 {
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout"><strong>Welcome @AuthManager.Name</strong>, Logout</a>
+
                                 }
                                 else
                                 {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SimpleLogin.Models
 {
@@ -21,6 +22,13 @@ namespace SimpleLogin.Models
         public bool IsEmailVerified { get; set; }
         public bool IsActive { get; set; }
         public string Image { get; set; }
-       
+        public string Roles { get; set; }//comma separated RoleIds
+    }
+
+    public class Role
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string ShortName { get; set; }
     }
 }
