@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using SimpleLogin.Models;
 using SimpleLogin.Persistance;
-using JwtRegisteredClaimNames = Microsoft.IdentityModel.JsonWebTokens.JwtRegisteredClaimNames;
 
 // ReSharper disable once CheckNamespace
 namespace System.Security.Claims
@@ -64,8 +63,9 @@ namespace System.Security.Claims
         public bool Login(LoginViewModel model)
         {
             var user = _userManager.FindBy(model);
+            if (user == null) return false;
             SignInCookie(model, user);
-            return user != null;
+            return true;
         }
 
         public async Task LogoutAsync()

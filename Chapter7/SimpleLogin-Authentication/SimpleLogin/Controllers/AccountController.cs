@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using SimpleLogin.Models;
 using SimpleLogin.Persistance;
 
-// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace SimpleLogin.Controllers
 {
     public class AccountController : Controller
@@ -36,9 +34,7 @@ namespace SimpleLogin.Controllers
 
                 if (result)
                 {
-                   // SignInCookie(model, user);
-
-                    return !string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl)
+                   return !string.IsNullOrEmpty(model.ReturnUrl) && Url.IsLocalUrl(model.ReturnUrl)
                         ? (IActionResult)Redirect(model.ReturnUrl)
                         : RedirectToAction("Index", "Home");
                 }

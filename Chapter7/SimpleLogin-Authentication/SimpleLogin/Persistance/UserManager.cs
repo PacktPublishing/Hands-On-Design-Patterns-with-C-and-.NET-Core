@@ -12,10 +12,7 @@ namespace SimpleLogin.Persistance
     {
         private readonly InventoryContext _context;
 
-        public UserManager(InventoryContext context)
-        {
-            _context = context;
-        }
+        public UserManager(InventoryContext context) => _context = context;
 
         public bool Add(User user, string userPassword)
         {
@@ -24,17 +21,16 @@ namespace SimpleLogin.Persistance
             return _context.SaveChanges() > 0;
         }
 
-        public bool Login(LoginViewModel authRequest)
-        {
-            return FindBy(authRequest) != null;
-        }
+        public bool Login(LoginViewModel authRequest) => FindBy(authRequest) != null;
+
+        public User GetBy(string userId) => _context.Users.Find(userId);
 
         public User FindBy(LoginViewModel authRequest)
         {
             var user = Get(authRequest.Username).FirstOrDefault();
-            if (user == null) throw new ArgumentException("You are not registered with us.");
-            if (VerifyPasswordHash(authRequest.Password, user.PasswordHash, user.PasswordSalt)) return user;
-            throw new ArgumentException("Incorrect username or password.");
+            if (user == null) return null;//throw new ArgumentException("You are not registered with us.");
+            return VerifyPasswordHash(authRequest.Password, user.PasswordHash, user.PasswordSalt) ? user : null;
+            //throw new ArgumentException("Incorrect username or password.");
         }
         public IEnumerable<User> Get(string searchTerm, bool isActive = true)
         {
@@ -42,12 +38,7 @@ namespace SimpleLogin.Persistance
                 x.UserName == searchTerm.ToLower() || x.Mobile == searchTerm ||
                 x.EmailId == searchTerm.ToLower() && x.IsActive == isActive);
         }
-
-        public User GetBy(string userId)
-        {
-            return _context.Users.Find(userId);
-        }
-
+        
         private User CreateUser(User userModel, string userPassword)
         {
             var userName = CreateUserName(userModel.FirstName, userModel.LastName);

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SimpleLogin.Models
 {
@@ -14,7 +10,7 @@ namespace SimpleLogin.Models
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "Remember Me")]
+        [Display(Name = "Remember Me on current System")]
         public bool RememberMe { get; set; }
         public string ReturnUrl { get; set; }
 
