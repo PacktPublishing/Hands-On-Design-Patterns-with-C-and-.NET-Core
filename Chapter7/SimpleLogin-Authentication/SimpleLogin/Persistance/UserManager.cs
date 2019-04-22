@@ -50,7 +50,7 @@ namespace SimpleLogin.Persistance
             userModel.UserName = userName;
             userModel.PasswordHash = password.Item1;
             userModel.PasswordSalt = password.Item2;
-
+            userModel.SecretKey = string.Empty;
             //Generate OTP and set their expiration time
             userModel.EmailToken = GenerateOTP();
             userModel.EmailTokenDateTime = DateTime.UtcNow.AddMinutes(7);
