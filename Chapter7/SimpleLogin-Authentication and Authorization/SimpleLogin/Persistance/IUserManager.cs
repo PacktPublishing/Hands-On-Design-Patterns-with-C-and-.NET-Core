@@ -11,5 +11,7 @@ namespace SimpleLogin.Persistance
         User FindBy(LoginViewModel authRequest);
         IEnumerable<User> Get(string searchTerm, bool isActive = true);
         IEnumerable<Role> GetRoles();
+        IEnumerable<Role> GetRolesBy(string userId);
+        string RoleNamesBy(string userId);
     }
 }

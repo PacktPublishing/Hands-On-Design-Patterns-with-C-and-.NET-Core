@@ -39,9 +39,14 @@ namespace SimpleLogin.Persistance
                 x.EmailId == searchTerm.ToLower() && x.IsActive == isActive);
         }
 
-        public IEnumerable<Role> GetRoles()
+        public IEnumerable<Role> GetRoles() => _context.Roles.ToList();
+
+        public IEnumerable<Role> GetRolesBy(string userId) => _context.Roles.Where(x => x.UserId.ToString().Equals(userId));
+
+        public string RoleNamesBy(string userId)
         {
-            return _context.Roles.ToList();
+            var listofRoleNames = GetRolesBy(userId).Select(x=>x.ShortName).ToList();
+            return string.Join(",", listofRoleNames);
         }
         private User CreateUser(User userModel, string userPassword)
         {

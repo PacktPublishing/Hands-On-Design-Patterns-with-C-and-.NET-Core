@@ -64,6 +64,8 @@ namespace System.Security.Claims
         {
             var user = _userManager.FindBy(model);
             if (user == null) return false;
+            //fill roles
+            user.Roles = _userManager.RoleNamesBy(user.Id.ToString());
             SignInCookie(model, user);
             return true;
         }
