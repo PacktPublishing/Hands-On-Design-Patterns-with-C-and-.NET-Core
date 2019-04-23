@@ -1,5 +1,4 @@
-﻿@using SimpleLogin.Models
-@model ProductViewModel
+﻿@model ProductViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -8,13 +7,12 @@
 <h2>Product Detail</h2>
 <hr />
 <div>
-    
+    <div>
+        <img src='data:image/png;base64,@Html.DisplayFor(model => model.ProductImage)' width="150" />
+    </div>
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProductId)
-        </dt>
         <dd>
-            @Html.DisplayFor(model => model.ProductId)
+            @Html.HiddenFor(model => model.ProductId)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ProductName)
@@ -30,11 +28,8 @@
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ProductImage)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ProductImage)
-        </dd>
-        <dt>
+            </dt>
+       <dt>
             @Html.DisplayNameFor(model => model.ProductPrice)
         </dt>
         <dd>

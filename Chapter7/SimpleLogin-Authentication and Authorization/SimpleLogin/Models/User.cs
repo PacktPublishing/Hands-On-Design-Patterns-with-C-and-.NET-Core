@@ -22,12 +22,14 @@ namespace SimpleLogin.Models
         public bool IsEmailVerified { get; set; }
         public bool IsActive { get; set; }
         public string Image { get; set; }
+        [NotMapped]
         public string Roles { get; set; }//comma separated RoleIds
     }
 
     public class Role
     {
         public Guid Id { get; set; }
+        public Guid UserId { get; set; }
         public string Name { get; set; }
         public string ShortName { get; set; }
     }

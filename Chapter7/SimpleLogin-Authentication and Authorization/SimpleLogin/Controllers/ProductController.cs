@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SimpleLogin.Common;
 using SimpleLogin.Models;
@@ -6,7 +7,8 @@ using SimpleLogin.Persistance;
 
 namespace SimpleLogin.Controllers
 {
-   public class ProductController : Controller
+    [Authorize]
+    public class ProductController : Controller
     {
         private readonly IInventoryRepositry _inventoryRepositry;
 
@@ -15,7 +17,7 @@ namespace SimpleLogin.Controllers
         public IActionResult Index() => View(_inventoryRepositry.GetProducts().ToProductvm());
 
         public IActionResult Details(Guid id) => View(_inventoryRepositry.GetProduct(id).ToProductvm());
-        
+
         public IActionResult Create() => View();
 
         [HttpPost]
@@ -32,7 +34,7 @@ namespace SimpleLogin.Controllers
                 return View();
             }
         }
-        
+
         public IActionResult Edit(Guid id) => View(_inventoryRepositry.GetProduct(id));
 
         [HttpPost]

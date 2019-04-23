@@ -7,8 +7,9 @@ namespace SimpleLogin.Persistance
     {
         bool Add(User user, string userPassword);
         bool Login(LoginViewModel authRequest);
+        User GetBy(string userId);
         User FindBy(LoginViewModel authRequest);
         IEnumerable<User> Get(string searchTerm, bool isActive = true);
-        User GetBy(string userId);
+        IEnumerable<Role> GetRoles();
     }
 }
