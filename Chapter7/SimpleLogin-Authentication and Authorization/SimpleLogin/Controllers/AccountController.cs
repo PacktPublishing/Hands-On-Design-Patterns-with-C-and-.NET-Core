@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using SimpleLogin.Models;
 using SimpleLogin.Persistance;
@@ -43,25 +40,7 @@ namespace SimpleLogin.Controllers
             return View(model);
         }
 
-        private void SignInCookie(LoginViewModel model, User user)
-        {
-            var claims = new List<Claim> {new Claim(ClaimTypes.Name, user.UserName)};
-
-
-            string[] roles = user.Roles.Split(",");
-
-            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
-
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            var principal = new ClaimsPrincipal(identity);
-
-            var props = new AuthenticationProperties {IsPersistent = model.RememberMe};
-
-            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
-        }
-
-        [HttpGet]
+       [HttpGet]
         public IActionResult Register()
         {
             var model = new RegisterViewModel();
@@ -96,6 +75,11 @@ namespace SimpleLogin.Controllers
         {
             await _authManager.LogoutAsync();
             return RedirectToAction("Index", "Home");
+        }
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult AccessDenied()
+        {
+            return View("Error", new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

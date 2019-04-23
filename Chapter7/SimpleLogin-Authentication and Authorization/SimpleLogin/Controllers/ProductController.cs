@@ -7,7 +7,7 @@ using SimpleLogin.Persistance;
 
 namespace SimpleLogin.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Manager")]
     public class ProductController : Controller
     {
         private readonly IInventoryRepositry _inventoryRepositry;
