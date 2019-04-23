@@ -5,11 +5,10 @@
     ViewData["Title"] = "Details";
 }
 
-<h2>Details</h2>
-
+<h2>Product Detail</h2>
+<hr />
 <div>
-    <h4>ProductViewModel</h4>
-    <hr />
+    
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.ProductId)
@@ -62,6 +61,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.ProductId }) |
+    <a asp-action="Index">List Products</a>
 </div>

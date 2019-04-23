@@ -6,7 +6,7 @@ using SimpleLogin.Persistance;
 
 namespace SimpleLogin.Controllers
 {
-    public class ProductController : Controller
+   public class ProductController : Controller
     {
         private readonly IInventoryRepositry _inventoryRepositry;
 

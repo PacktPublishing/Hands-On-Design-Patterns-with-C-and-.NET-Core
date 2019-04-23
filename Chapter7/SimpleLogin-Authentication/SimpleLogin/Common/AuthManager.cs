@@ -103,11 +103,10 @@ namespace System.Security.Claims
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, $"{user.FirstName}"),
+                new Claim(ClaimTypes.Name, user.FirstName),
                 new Claim(ClaimTypes.Email,user.EmailId),
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString())
             };
-
 
             if (user.Roles != null)
             {
