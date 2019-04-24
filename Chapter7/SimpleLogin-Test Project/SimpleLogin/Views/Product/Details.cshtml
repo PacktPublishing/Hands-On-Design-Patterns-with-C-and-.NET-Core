@@ -1,0 +1,61 @@
+﻿@model ProductViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Product Detail</h2>
+<hr />
+<div>
+    <div>
+        <img src='data:image/png;base64,@Html.DisplayFor(model => model.ProductImage)' width="150" />
+    </div>
+    <dl class="dl-horizontal">
+        <dd>
+            @Html.HiddenFor(model => model.ProductId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductDescription)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductImage)
+            </dt>
+       <dt>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CategoryId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryDescription)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CategoryDescription)
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.ProductId }) |
+    <a asp-action="Index">List Products</a>
+</div>

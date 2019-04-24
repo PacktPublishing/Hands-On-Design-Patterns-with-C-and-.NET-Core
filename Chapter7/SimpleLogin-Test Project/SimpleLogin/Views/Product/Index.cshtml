@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ProductViewModel>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h1>Product Listing</h1>
+<hr/>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.CategoryDescription)
+            </th>*@
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           <td>
+                @Html.HiddenFor(modelItem => item.ProductId)
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDescription)
+            </td>
+            <td>
+               <img src='data:image/png;base64,@Html.DisplayFor(modelItem => item.ProductImage)' height="50" /> 
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+           <td>
+                @Html.HiddenFor(modelItem => item.CategoryId)
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.CategoryDescription)
+            </td>*@
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.ProductId  }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
