@@ -10,12 +10,15 @@
 <div>
     <h4>Product</h4>
     <hr />
+    <div>
+        <img src='data:image/png;base64,@Html.DisplayFor(model => model.Image)' width="150" />
+    </div>
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Id)
-        </dt>
+        </dt>*@
         <dd>
-            @Html.DisplayFor(model => model.Id)
+            @Html.HiddenFor(model => model.Id)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -29,28 +32,28 @@
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Image)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Image)
-        </dd>
+        </dd>*@
         <dt>
             @Html.DisplayNameFor(model => model.Price)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Price)
         </dd>
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
+        </dt>*@
         <dd>
-            @Html.DisplayFor(model => model.CategoryId)
+            @Html.HiddenFor(model => model.CategoryId)
         </dd>
     </dl>
-    
+
     <form asp-action="Delete">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
+        <input type="submit" value="Delete" class="btn btn-Primary" /> |
+        <a asp-action="Index">Back to Products</a>
     </form>
 </div>

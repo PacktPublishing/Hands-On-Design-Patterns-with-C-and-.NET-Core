@@ -7,7 +7,7 @@
 <h2>Product Listing</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create New Product</a>
 </p>
 <table class="table">
     <thead>
@@ -45,7 +45,7 @@
                 @Html.DisplayFor(modelItem => item.ProductDescription)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductImage)
+                <img src='data:image/png;base64,@Html.DisplayFor(modelItem => item.ProductImage)' height="50" /> 
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductPrice)

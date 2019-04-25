@@ -9,12 +9,15 @@
 <div>
     <h4>ProductViewModel</h4>
     <hr />
+    <div>
+        <img src='data:image/png;base64,@Html.DisplayFor(model => model.ProductImage)' width="150" />
+    </div>
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.ProductId)
-        </dt>
+        </dt>*@
         <dd>
-            @Html.DisplayFor(model => model.ProductId)
+            @Html.HiddenFor(model => model.ProductId)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ProductName)
@@ -28,23 +31,23 @@
         <dd>
             @Html.DisplayFor(model => model.ProductDescription)
         </dd>
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.ProductImage)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ProductImage)
-        </dd>
+        </dd>*@
         <dt>
             @Html.DisplayNameFor(model => model.ProductPrice)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ProductPrice)
         </dd>
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.CategoryId)
-        </dt>
+        </dt>*@
         <dd>
-            @Html.DisplayFor(model => model.CategoryId)
+            @Html.HiddenFor(model => model.CategoryId)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.CategoryName)
@@ -61,6 +64,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    <a asp-action="Index">Back to List</a>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.ProductId }) |
+    <a asp-action="Index">Back to Product</a>
 </div>
