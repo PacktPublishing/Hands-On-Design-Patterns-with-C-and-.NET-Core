@@ -8,13 +8,13 @@ namespace FlixOne.Web.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IInventoryRepositry _inventoryRepositry;
+        private readonly IInventoryRepositry _repositry;
 
-        public ProductController(IInventoryRepositry inventoryRepositry) => _inventoryRepositry = inventoryRepositry;
+        public ProductController(IInventoryRepositry inventoryRepositry) => _repositry = inventoryRepositry;
 
-        public IActionResult Index() => View(_inventoryRepositry.GetProducts().ToProductvm());
+        public IActionResult Index() => View(_repositry.GetProducts().ToProductvm());
 
-        public IActionResult Details(Guid id) => View(_inventoryRepositry.GetProduct(id).ToProductvm());
+        public IActionResult Details(Guid id) => View(_repositry.GetProduct(id).ToProductvm());
         
         public IActionResult Create() => View();
 
@@ -24,7 +24,7 @@ namespace FlixOne.Web.Controllers
         {
             try
             {
-                _inventoryRepositry.AddProduct(product);
+                _repositry.AddProduct(product);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -33,7 +33,7 @@ namespace FlixOne.Web.Controllers
             }
         }
         
-        public IActionResult Edit(Guid id) => View(_inventoryRepositry.GetProduct(id));
+       public IActionResult Edit(Guid id) => View(_repositry.GetProduct(id));
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -41,7 +41,7 @@ namespace FlixOne.Web.Controllers
         {
             try
             {
-                _inventoryRepositry.UpdateProduct(product);
+                _repositry.UpdateProduct(product);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -50,7 +50,7 @@ namespace FlixOne.Web.Controllers
             }
         }
 
-        public IActionResult Delete(Guid id) => View(_inventoryRepositry.GetProduct(id));
+        public IActionResult Delete(Guid id) => View(_repositry.GetProduct(id));
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -58,7 +58,7 @@ namespace FlixOne.Web.Controllers
         {
             try
             {
-                _inventoryRepositry.RemoveProduct(product);
+                _repositry.RemoveProduct(product);
                 return RedirectToAction(nameof(Index));
             }
             catch

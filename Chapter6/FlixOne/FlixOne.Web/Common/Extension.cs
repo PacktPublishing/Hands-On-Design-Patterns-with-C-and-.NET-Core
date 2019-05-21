@@ -32,13 +32,8 @@ namespace FlixOne.Web.Common
                 ProductPrice = productModel.Price
             };
         }
-        public static IEnumerable<Product> ToProductModel(this IEnumerable<ProductViewModel> productvm)
-        {
-            return productvm.Select(ToProductModel).ToList();
-        }
-        public static IEnumerable<ProductViewModel> ToProductvm(this IEnumerable<Product> productModel)
-        {
-            return productModel.Select(ToProductvm).ToList();
-        }
+        public static IEnumerable<Product> ToProductModel(this IEnumerable<ProductViewModel> productvm) => productvm.Select(ToProductModel).ToList();
+
+        public static IEnumerable<ProductViewModel> ToProductvm(this IEnumerable<Product> productModel) => productModel.Select(ToProductvm).ToList();
     }
 }

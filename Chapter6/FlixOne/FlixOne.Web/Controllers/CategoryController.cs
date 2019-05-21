@@ -9,10 +9,7 @@ namespace FlixOne.Web.Controllers
     {
         private readonly IInventoryRepositry _inventoryRepositry;
 
-        public CategoryController(IInventoryRepositry inventoryRepositry)
-        {
-            _inventoryRepositry = inventoryRepositry;
-        }
+        public CategoryController(IInventoryRepositry inventoryRepositry) => _inventoryRepositry = inventoryRepositry;
 
         public IActionResult Index() => View(_inventoryRepositry.GetCategories());
         
