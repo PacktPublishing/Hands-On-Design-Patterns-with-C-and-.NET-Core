@@ -9,10 +9,10 @@ namespace ConferenceTicketing
         {
             Console.WriteLine();
             //MultiThreadedMethod();
-            SynchronizedMethod();
+            //SynchronizedMethod();
+            ShowAsyncMessage();
             Console.ReadLine();
         }
-
 
         private static void MultiThreadedMethod()
         {
@@ -34,9 +34,17 @@ namespace ConferenceTicketing
             counterA.Name = "A";
             counterB.Name = "B";
             counterC.Name = "C";
+            counterC.Priority = ThreadPriority.Highest;
+            counterB.Priority = ThreadPriority.Normal;
+            counterA.Priority = ThreadPriority.Lowest;
             counterA.Start();
             counterB.Start();
             counterC.Start();
+        }
+        private static void ShowAsyncMessage()
+        {
+            AsyncAwait asyncAwait = new AsyncAwait();
+            var showMessage = asyncAwait.ShowMessage();
         }
     }
 }
