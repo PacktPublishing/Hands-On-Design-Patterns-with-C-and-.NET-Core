@@ -16,20 +16,17 @@ namespace BestPractices
 
         private static void ParallelismExample()
         {
-            var parallelism = new Parallelism();
-            parallelism.GenerateBooks(15000);
-            Console.WriteLine("\n\tId\tName\tQty\n");
-            var stopWatch = new Stopwatch();
-            stopWatch.Start();
-            parallelism.Sequential();
-           // parallelism.PallelVersion();
-            stopWatch.Stop();
-            var ts = stopWatch.Elapsed;
-            var elapsedTime = string.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-                 ts.Hours, ts.Minutes, ts.Seconds,
-                 ts.Milliseconds / 10);
-            Console.WriteLine("\n\tProcessing Time " + elapsedTime);
+            Plinq plinq= new Plinq();
+            plinq.Process(true);
+        }
 
+        private static void Parallelism()
+        {
+            var parallelism = new Parallelism();
+            parallelism.GenerateBooks(19);
+            Console.WriteLine("\n\tId\tName\tQty\n");
+            //parallelism.Sequential();
+            parallelism.PallelVersion();
             Console.WriteLine($"\n\tTotal Processes Running on the machine:{Environment.ProcessorCount}\n");
             Console.WriteLine("\tProcessing complete. Press any key to exit.");
             Console.ReadKey();

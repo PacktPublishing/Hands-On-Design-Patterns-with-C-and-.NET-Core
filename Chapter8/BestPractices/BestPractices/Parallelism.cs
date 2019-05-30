@@ -27,7 +27,7 @@ namespace BestPractices
             Parallel.ForEach(books, Process);
         }
 
-        private IEnumerable<Book> GetBooks()
+        public IEnumerable<Book> GetBooks()
         {
             return _books.Values.ToList();
         }
@@ -48,7 +48,7 @@ namespace BestPractices
             return _books;
         }
 
-        private void Process(Book book)
+        internal void Process(Book book)
         {
             Console.WriteLine($"\t{book.Id}\t{book.Name}\t{book.Quantity}");
         }
