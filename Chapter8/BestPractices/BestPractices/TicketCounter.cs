@@ -6,7 +6,6 @@ namespace BestPractices
     internal class TicketCounter
     {
         private static readonly object Object = new object();
-
         public void ShowMessage()
         {
             const int personsInQueue = 5;
