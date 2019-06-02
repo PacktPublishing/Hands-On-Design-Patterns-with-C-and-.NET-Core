@@ -24,20 +24,29 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProductPrice)
             </th>
-            
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDiscountRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductDiscount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductNetPrice)
+            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.CategoryName)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.CategoryDescription)
-            </th>*@
+            @Html.DisplayNameFor(model => model.CategoryDescription)
+        </th>*@
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-           <td>
+            <td>
                 @Html.HiddenFor(modelItem => item.ProductId)
                 @Html.DisplayFor(modelItem => item.ProductName)
             </td>
@@ -45,20 +54,29 @@
                 @Html.DisplayFor(modelItem => item.ProductDescription)
             </td>
             <td>
-                <img src='data:image/png;base64,@Html.DisplayFor(modelItem => item.ProductImage)' height="50" /> 
+                <img src='data:image/png;base64,@Html.DisplayFor(modelItem => item.ProductImage)' height="50" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductPrice)
             </td>
-           <td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDiscountRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductDiscount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductNetPrice)
+            </td>
+            <td>
                 @Html.HiddenFor(modelItem => item.CategoryId)
                 @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.CategoryDescription)
-            </td>*@
+            @Html.DisplayFor(modelItem => item.CategoryDescription)
+        </td>*@
             <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.ProductId  }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
                 @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
             </td>

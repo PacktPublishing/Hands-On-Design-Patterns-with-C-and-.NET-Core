@@ -16,5 +16,8 @@ namespace FlixOne.Web.Persistance
         bool AddCategory(Category category);
         bool UpdateCategory(Category category);
         bool RemoveCategory(Category category);
+
+        IEnumerable<Discount> GetDiscounts();
+        IEnumerable<Discount> GetDiscountBy(Guid productId, bool activeOnly=false);
     }
 }

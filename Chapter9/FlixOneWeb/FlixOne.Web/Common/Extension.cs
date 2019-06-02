@@ -20,6 +20,25 @@ namespace FlixOne.Web.Common
 
         public static ProductViewModel ToProductvm(this Product productModel)
         {
+            var discounts = new List<Discount>();
+            if (productModel.Discount.Any())
+            {
+                productModel.Discount.ToList().ForEach(d =>
+                {
+                    discounts.Add(new Discount
+                    {
+                        Id = d.Id,
+                        ProductId = d.ProductId,
+                        Description = d.Description,
+                        Active = d.Active,
+                        DiscountRate = d.DiscountRate
+                    });
+                });
+            }
+
+            var productDiscountRate = discounts.FirstOrDefault(d => d.ProductId == productModel.Id && d.Active).DiscountRate;
+            var productDiscount = productModel.Price.CalculateDiscount(productDiscountRate);
+            var productNetprice = productModel.Price - productDiscount;
             return new ProductViewModel
             {
                 CategoryId = productModel.CategoryId,
@@ -29,8 +48,16 @@ namespace FlixOne.Web.Common
                 ProductId = productModel.Id,
                 ProductImage = productModel.Image,
                 ProductName = productModel.Name,
-                ProductPrice = productModel.Price
+                ProductPrice = productModel.Price,
+                ProductDiscountRate = productDiscountRate,
+                ProductDiscount = productDiscount,
+                ProductNetPrice = productNetprice 
             };
+        }
+
+        public static decimal CalculateDiscount(this decimal price, decimal discount)
+        {
+            return price * discount / 100;
         }
         public static IEnumerable<Product> ToProductModel(this IEnumerable<ProductViewModel> productvm) => productvm.Select(ToProductModel).ToList();
 

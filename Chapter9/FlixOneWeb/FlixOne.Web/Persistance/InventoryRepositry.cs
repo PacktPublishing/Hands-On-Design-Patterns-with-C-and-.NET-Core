@@ -19,7 +19,17 @@ namespace FlixOne.Web.Persistance
             _helper = helper;
         }
 
-        public IEnumerable<Product> GetProducts() => _inventoryContext.Products.Include(c => c.Category).ToList();
+        public IEnumerable<Product> GetProducts()
+        {
+            var products = _inventoryContext.Products.Include(c => c.Category).ToList();
+            var pDiscounts = new List<Product>();
+            products.ForEach(product =>
+            {
+                product.Discount = GetDiscountBy(product.Id);
+                pDiscounts.Add(product);
+            });
+            return pDiscounts;
+        }
 
         public Product GetProduct(Guid id) => _inventoryContext.Products.Include(c => c.Category).FirstOrDefault(x => x.Id == id);
 
@@ -67,5 +77,11 @@ namespace FlixOne.Web.Persistance
             _inventoryContext.Remove(category);
             return _inventoryContext.SaveChanges() > 0;
         }
+
+        public IEnumerable<Discount> GetDiscounts() => _inventoryContext.Discounts.ToList();
+
+        public IEnumerable<Discount> GetDiscountBy(Guid productId, bool activeOnly = false) => activeOnly
+            ? GetDiscounts().Where(d => d.ProductId == productId && d.Active)
+            : GetDiscounts().Where(d => d.ProductId == productId);
     }
 }
