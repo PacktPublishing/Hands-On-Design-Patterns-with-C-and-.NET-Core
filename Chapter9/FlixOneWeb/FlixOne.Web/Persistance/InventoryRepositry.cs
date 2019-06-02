@@ -10,8 +10,8 @@ namespace FlixOne.Web.Persistance
 {
     public class InventoryRepositry : IInventoryRepositry
     {
-        private readonly InventoryContext _inventoryContext;
         private readonly IHelper _helper;
+        private readonly InventoryContext _inventoryContext;
 
         public InventoryRepositry(InventoryContext inventoryContext, IHelper helper)
         {
@@ -31,11 +31,9 @@ namespace FlixOne.Web.Persistance
             return pDiscounts;
         }
 
-        public Product GetProduct(Guid id) => _inventoryContext.Products.Include(c => c.Category).FirstOrDefault(x => x.Id == id);
-
-        public IEnumerable<DiscountViewModel> GetValidDiscoutedProducts(IEnumerable<DiscountViewModel> discountViewModels)
+        public Product GetProduct(Guid id)
         {
-            return _helper.FilterOutInvalidDiscountRates(discountViewModels);
+            return _inventoryContext.Products.Include(c => c.Category).FirstOrDefault(x => x.Id == id);
         }
 
         public bool AddProduct(Product product)
@@ -56,9 +54,15 @@ namespace FlixOne.Web.Persistance
             return _inventoryContext.SaveChanges() > 0;
         }
 
-        public IEnumerable<Category> GetCategories() => _inventoryContext.Categories.ToList();
+        public IEnumerable<Category> GetCategories()
+        {
+            return _inventoryContext.Categories.ToList();
+        }
 
-        public Category GetCategory(Guid id) => _inventoryContext.Categories.FirstOrDefault(x => x.Id == id);
+        public Category GetCategory(Guid id)
+        {
+            return _inventoryContext.Categories.FirstOrDefault(x => x.Id == id);
+        }
 
         public bool AddCategory(Category category)
         {
@@ -78,10 +82,36 @@ namespace FlixOne.Web.Persistance
             return _inventoryContext.SaveChanges() > 0;
         }
 
-        public IEnumerable<Discount> GetDiscounts() => _inventoryContext.Discounts.ToList();
+        public IEnumerable<Discount> GetDiscounts()
+        {
+            return _inventoryContext.Discounts.ToList();
+        }
 
-        public IEnumerable<Discount> GetDiscountBy(Guid productId, bool activeOnly = false) => activeOnly
-            ? GetDiscounts().Where(d => d.ProductId == productId && d.Active)
-            : GetDiscounts().Where(d => d.ProductId == productId);
+        public IEnumerable<Discount> GetDiscountBy(Guid productId, bool activeOnly = false)
+        {
+            var discounts = activeOnly
+                ? GetDiscounts().Where(d => d.ProductId == productId && d.Active)
+                : GetDiscounts().Where(d => d.ProductId == productId);
+            var product = _inventoryContext.Products.FirstOrDefault(p => p.Id == productId);
+            var listDis = new List<Discount>();
+            foreach (var discount in discounts)
+            {
+                if (product != null)
+                {
+                    discount.ProductName = product.Name;
+                    discount.ProductPrice = product.Price;
+                }
+
+                listDis.Add(discount);
+            }
+
+            return listDis;
+        }
+
+        public IEnumerable<DiscountViewModel> GetValidDiscoutedProducts(
+            IEnumerable<DiscountViewModel> discountViewModels)
+        {
+            return _helper.FilterOutInvalidDiscountRates(discountViewModels);
+        }
     }
 }

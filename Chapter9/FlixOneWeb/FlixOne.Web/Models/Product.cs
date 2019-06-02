@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FlixOne.Web.Models
 {
@@ -7,7 +8,7 @@ namespace FlixOne.Web.Models
     {
         public Product()
         {
-            Discount = new List<Discount>() ;
+            Discount = new List<Discount>();
         }
 
         public Guid Id { get; set; }
@@ -19,12 +20,12 @@ namespace FlixOne.Web.Models
 
         public virtual Category Category { get; set; }
         public virtual IEnumerable<Discount> Discount { get; set; }
-
     }
+
     /// <summary>
-    /// Purpos of this class is
-    /// to set various discount offers eg. seasonl dis, special disc etc.
-    /// only one discount offer will be active at time.
+    ///     Purpos of this class is
+    ///     to set various discount offers eg. seasonl dis, special disc etc.
+    ///     only one discount offer will be active at time.
     /// </summary>
     public class Discount
     {
@@ -33,5 +34,9 @@ namespace FlixOne.Web.Models
         public string Description { get; set; }
         public bool Active { get; set; }
         public Guid ProductId { get; set; }
+
+        [NotMapped] public string ProductName { get; set; }
+
+        [NotMapped] public decimal ProductPrice { get; set; }
     }
 }

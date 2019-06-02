@@ -16,8 +16,8 @@ namespace FlixOne.Web.Common
             IEnumerable<DiscountViewModel> discountViewModels)
         {
             var viewModels = discountViewModels.ToList();
-            var res = viewModels.Select(x => x.Discount).Where(_vallidDiscount);
-            return viewModels.Where(x => res.Contains(x.Discount));
+            var res = viewModels.Select(x => x.ProductDiscountRate).Where(_vallidDiscount);
+            return viewModels.Where(x => res.Contains(x.ProductDiscountRate));
         }
 
         public IEnumerable<ProductViewModel> FilterOutInvalidProductNames(

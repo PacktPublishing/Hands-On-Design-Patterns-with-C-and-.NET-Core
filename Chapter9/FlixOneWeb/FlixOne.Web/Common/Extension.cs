@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FlixOne.Web.Models;
 
@@ -51,7 +52,22 @@ namespace FlixOne.Web.Common
                 ProductPrice = productModel.Price,
                 ProductDiscountRate = productDiscountRate,
                 ProductDiscount = productDiscount,
-                ProductNetPrice = productNetprice 
+                ProductNetPrice = productNetprice
+            };
+        }
+        private static readonly Func<decimal, bool> VallidDiscount = d => d == 0 || d - 100 <= 1;
+        public static DiscountViewModel ToDiscountViewModel(this Discount discountModel)
+        {
+            var remarks = VallidDiscount(discountModel.DiscountRate) ? "-" : "Discount rate is invalid, hence will not consider in price calculations.";
+            return new DiscountViewModel
+            {
+                ProductId = discountModel.ProductId,
+                ProductName = discountModel.ProductName,
+                Price = discountModel.ProductPrice,
+                Active = discountModel.Active ? "Yes" : "No",
+                Description = discountModel.Description,
+                ProductDiscountRate = discountModel.DiscountRate,
+                Remarks = remarks
             };
         }
 
@@ -59,8 +75,11 @@ namespace FlixOne.Web.Common
         {
             return price * discount / 100;
         }
+
         public static IEnumerable<Product> ToProductModel(this IEnumerable<ProductViewModel> productvm) => productvm.Select(ToProductModel).ToList();
 
         public static IEnumerable<ProductViewModel> ToProductvm(this IEnumerable<Product> productModel) => productModel.Select(ToProductvm).ToList();
+
+        public static IEnumerable<DiscountViewModel> ToDiscountViewModel(this IEnumerable<Discount> discountModel) => discountModel.Select(ToDiscountViewModel).ToList();
     }
 }

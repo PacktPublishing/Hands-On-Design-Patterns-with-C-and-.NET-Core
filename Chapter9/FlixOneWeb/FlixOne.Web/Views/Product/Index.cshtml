@@ -1,4 +1,6 @@
-﻿@model IEnumerable<FlixOne.Web.Models.ProductViewModel>
+﻿@using System.Globalization
+@using FlixOne.Web.Controllers
+@model IEnumerable<FlixOne.Web.Models.ProductViewModel>
 
 @{
     ViewData["Title"] = "View";
@@ -60,7 +62,8 @@
                 @Html.DisplayFor(modelItem => item.ProductPrice)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductDiscountRate)
+                @Html.ActionLink(item.ProductDiscountRate.ToString(CultureInfo.InvariantCulture), "Details","Discount", new { id = item.ProductId })
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductDiscount)
