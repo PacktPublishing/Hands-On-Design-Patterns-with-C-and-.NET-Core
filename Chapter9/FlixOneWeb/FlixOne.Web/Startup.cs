@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FlixOne.Web.Common;
 using FlixOne.Web.Contexts;
 using FlixOne.Web.Persistance;
 using Microsoft.AspNetCore.Builder;
@@ -27,6 +28,7 @@ namespace FlixOne.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<IInventoryRepositry, InventoryRepositry>();
+            services.AddTransient<IHelper, Helper>();
             services.AddDbContext<InventoryContext>(o => o.UseSqlServer(Configuration.GetConnectionString("FlixOneDbConnection")));
             services.Configure<CookiePolicyOptions>(options =>
             {

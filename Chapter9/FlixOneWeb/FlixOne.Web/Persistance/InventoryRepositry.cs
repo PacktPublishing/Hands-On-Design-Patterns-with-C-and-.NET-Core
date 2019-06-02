@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using FlixOne.Web.Common;
 using FlixOne.Web.Contexts;
 using FlixOne.Web.Models;
 using Microsoft.EntityFrameworkCore;
@@ -10,12 +11,22 @@ namespace FlixOne.Web.Persistance
     public class InventoryRepositry : IInventoryRepositry
     {
         private readonly InventoryContext _inventoryContext;
+        private readonly IHelper _helper;
 
-        public InventoryRepositry(InventoryContext inventoryContext) => _inventoryContext = inventoryContext;
+        public InventoryRepositry(InventoryContext inventoryContext, IHelper helper)
+        {
+            _inventoryContext = inventoryContext;
+            _helper = helper;
+        }
 
         public IEnumerable<Product> GetProducts() => _inventoryContext.Products.Include(c => c.Category).ToList();
 
         public Product GetProduct(Guid id) => _inventoryContext.Products.Include(c => c.Category).FirstOrDefault(x => x.Id == id);
+
+        public IEnumerable<DiscountViewModel> GetValidDiscoutedProducts(IEnumerable<DiscountViewModel> discountViewModels)
+        {
+            return _helper.FilterOutInvalidDiscountRates(discountViewModels);
+        }
 
         public bool AddProduct(Product product)
         {
