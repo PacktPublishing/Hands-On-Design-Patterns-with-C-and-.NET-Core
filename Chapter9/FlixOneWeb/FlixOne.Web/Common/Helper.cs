@@ -10,7 +10,7 @@ namespace FlixOne.Web.Common
     {
         private static readonly TextInfo TextInfo = new CultureInfo("en-US", false).TextInfo;
         private readonly Predicate<string> _isProductNameTitleCase = s => s.Equals(TextInfo.ToTitleCase(s));
-        private readonly Func<decimal, bool> _vallidDiscount = d => d > 0 || d % 100 <= 1;
+        private readonly Func<decimal, bool> _vallidDiscount = d => d == 0 || d - 100 <= 1;
 
         public IEnumerable<DiscountViewModel> FilterOutInvalidDiscountRates(
             IEnumerable<DiscountViewModel> discountViewModels)
