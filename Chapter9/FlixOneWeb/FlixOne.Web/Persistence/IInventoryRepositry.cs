@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using FlixOne.Web.Models;
 
-namespace FlixOne.Web.Persistance
+namespace FlixOne.Web.Persistence
 {
     public interface IInventoryRepositry
     {

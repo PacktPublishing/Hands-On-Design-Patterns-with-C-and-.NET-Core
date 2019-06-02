@@ -1,7 +1,7 @@
 ﻿using System;
 using FlixOne.Web.Common;
 using FlixOne.Web.Models;
-using FlixOne.Web.Persistance;
+using FlixOne.Web.Persistence;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlixOne.Web.Controllers

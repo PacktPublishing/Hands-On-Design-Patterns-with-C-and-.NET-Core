@@ -6,7 +6,7 @@ using FlixOne.Web.Contexts;
 using FlixOne.Web.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace FlixOne.Web.Persistance
+namespace FlixOne.Web.Persistence
 {
     public class InventoryRepositry : IInventoryRepositry
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FlixOne.Web.Common;
 using FlixOne.Web.Contexts;
-using FlixOne.Web.Persistance;
+using FlixOne.Web.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
