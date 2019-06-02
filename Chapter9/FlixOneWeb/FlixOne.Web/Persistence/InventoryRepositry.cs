@@ -84,14 +84,26 @@ namespace FlixOne.Web.Persistence
 
         public IEnumerable<Discount> GetDiscounts()
         {
+            var disList = GetDiscountList().Select(d => d.ProductId).Distinct().ToList();
+            var listDiscounts = new List<Discount>();
+            foreach (var discount in disList)
+            {
+                listDiscounts.AddRange(GetDiscountBy(discount));
+            }
+
+            return listDiscounts;
+        }
+
+        private List<Discount> GetDiscountList()
+        {
             return _inventoryContext.Discounts.ToList();
         }
 
         public IEnumerable<Discount> GetDiscountBy(Guid productId, bool activeOnly = false)
         {
             var discounts = activeOnly
-                ? GetDiscounts().Where(d => d.ProductId == productId && d.Active)
-                : GetDiscounts().Where(d => d.ProductId == productId);
+                ? GetDiscountList().Where(d => d.ProductId == productId && d.Active)
+                : GetDiscountList().Where(d => d.ProductId == productId);
             var product = _inventoryContext.Products.FirstOrDefault(p => p.Id == productId);
             var listDis = new List<Discount>();
             foreach (var discount in discounts)

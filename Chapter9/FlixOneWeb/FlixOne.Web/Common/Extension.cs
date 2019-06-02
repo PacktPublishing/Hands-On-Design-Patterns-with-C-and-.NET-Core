@@ -7,6 +7,8 @@ namespace FlixOne.Web.Common
 {
     public static class Extension
     {
+        private static readonly Func<decimal, bool> VallidDiscount = d => d == 0 || d - 100 <= 1;
+
         public static Product ToProductModel(this ProductViewModel productvm)
         {
             return new Product
@@ -23,7 +25,6 @@ namespace FlixOne.Web.Common
         {
             var discounts = new List<Discount>();
             if (productModel.Discount.Any())
-            {
                 productModel.Discount.ToList().ForEach(d =>
                 {
                     discounts.Add(new Discount
@@ -35,9 +36,9 @@ namespace FlixOne.Web.Common
                         DiscountRate = d.DiscountRate
                     });
                 });
-            }
 
-            var productDiscountRate = discounts.FirstOrDefault(d => d.ProductId == productModel.Id && d.Active).DiscountRate;
+            var productDiscountRate =
+                discounts.FirstOrDefault(d => d.ProductId == productModel.Id && d.Active).DiscountRate;
             var productDiscount = productModel.Price.CalculateDiscount(productDiscountRate);
             var productNetprice = productModel.Price - productDiscount;
             return new ProductViewModel
@@ -55,10 +56,12 @@ namespace FlixOne.Web.Common
                 ProductNetPrice = productNetprice
             };
         }
-        private static readonly Func<decimal, bool> VallidDiscount = d => d == 0 || d - 100 <= 1;
+
         public static DiscountViewModel ToDiscountViewModel(this Discount discountModel)
         {
-            var remarks = VallidDiscount(discountModel.DiscountRate) ? "-" : "Discount rate is invalid, hence will not consider in price calculations.";
+            var remarks = VallidDiscount(discountModel.DiscountRate)
+                ? "-"
+                : "Discount rate is invalid, hence will not consider in price calculations.";
             return new DiscountViewModel
             {
                 ProductId = discountModel.ProductId,
@@ -76,10 +79,31 @@ namespace FlixOne.Web.Common
             return price * discount / 100;
         }
 
-        public static IEnumerable<Product> ToProductModel(this IEnumerable<ProductViewModel> productvm) => productvm.Select(ToProductModel).ToList();
+        public static IEnumerable<Product> ToProductModel(this IEnumerable<ProductViewModel> productvm)
+        {
+            return productvm.Select(ToProductModel).ToList();
+        }
 
-        public static IEnumerable<ProductViewModel> ToProductvm(this IEnumerable<Product> productModel) => productModel.Select(ToProductvm).ToList();
+        public static IEnumerable<ProductViewModel> ToProductvm(this IEnumerable<Product> productModel)
+        {
+            return productModel.Select(ToProductvm).ToList();
+        }
 
-        public static IEnumerable<DiscountViewModel> ToDiscountViewModel(this IEnumerable<Discount> discountModel) => discountModel.Select(ToDiscountViewModel).ToList();
+        public static IEnumerable<DiscountViewModel> ToDiscountViewModel(this IEnumerable<Discount> discountModel)
+        {
+            return discountModel.Select(ToDiscountViewModel).ToList();
+        }
+
+        public static IEnumerable<T> Where<T>
+            (this IEnumerable<T> source, Func<T, bool> criteria)
+        {
+            foreach (var item in source)
+                if (criteria(item))
+                    yield return item;
+        }
+
+        public static IEnumerable<T> SimplifiedWhere<T>
+            (this IEnumerable<T> source, Func<T, bool> criteria) => 
+            Enumerable.Where(source, criteria);
     }
 }
