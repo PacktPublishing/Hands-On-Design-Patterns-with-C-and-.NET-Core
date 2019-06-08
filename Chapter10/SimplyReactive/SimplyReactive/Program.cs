@@ -13,17 +13,19 @@ namespace SimplyReactive
             var num2 = Console.ReadLine();
             var counter1 = num1.ToInts(',');
             var counter2 = num2.ToInts(',');
-            var ticketCounter = new TicketCounter(counter1, counter2);
+            TicketCounter ticketCounter = new TicketCounter(counter1, counter2);
             Console.Clear();
             Console.Write("\n\tCounter1:");
             ticketCounter.Print(ticketCounter.Observable1);
             Console.Write("\n\tCounter2:");
             ticketCounter.Print(ticketCounter.Observable2);
-
+            Console.WriteLine("\n\n\n");
             Console.Write("\n\tMerge:\t");
             ticketCounter.Print(ticketCounter.Merge());
+            Console.WriteLine("\n\n\n");
             Console.Write("\n\tFilter (<= 3): ");
             ticketCounter.Print(ticketCounter.Filter());
+            Console.WriteLine("\n\n\n");
             Console.Write("\n\tMap (+ 3):");
             ticketCounter.Print(ticketCounter.Map());
             Console.Write("\n\n\tPress any key...");
