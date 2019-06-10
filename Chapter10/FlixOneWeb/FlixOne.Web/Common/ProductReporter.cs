@@ -46,6 +46,6 @@ namespace FlixOne.Web.Common
                 _unsubscriber = provider.Subscribe(this);
         }
 
-        private void Unsubscribe() => _unsubscriber.Dispose();
+        public virtual void Unsubscribe() => _unsubscriber.Dispose();
     }
 }

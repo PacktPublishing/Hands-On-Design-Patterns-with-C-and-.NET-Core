@@ -27,6 +27,7 @@ namespace FlixOne.Web.Common
         public IEnumerable<ProductViewModel>
             GetProductsAbovePrice(IEnumerable<ProductViewModel> productViewModels, decimal price) =>
             productViewModels.SimplifiedWhere(p => p.ProductPrice > price);
+
     }
 
     public interface IHelper
