@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlixOne.API", "FlixOne.API\FlixOne.API.csproj", "{5EABDFE1-AD91-4114-A8AF-AEB59D079828}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlixOne.CQRS", "FlixOne.CQRS\FlixOne.CQRS.csproj", "{79F0B7B5-620E-48B8-B19D-48CB3685340D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5EABDFE1-AD91-4114-A8AF-AEB59D079828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EABDFE1-AD91-4114-A8AF-AEB59D079828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EABDFE1-AD91-4114-A8AF-AEB59D079828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EABDFE1-AD91-4114-A8AF-AEB59D079828}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79F0B7B5-620E-48B8-B19D-48CB3685340D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79F0B7B5-620E-48B8-B19D-48CB3685340D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79F0B7B5-620E-48B8-B19D-48CB3685340D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79F0B7B5-620E-48B8-B19D-48CB3685340D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {08AFA369-FFCB-4A71-B595-C98E3CA7B2C4}
+	EndGlobalSection
+EndGlobal
