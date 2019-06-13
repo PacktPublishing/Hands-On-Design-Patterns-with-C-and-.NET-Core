@@ -19,25 +19,25 @@ namespace FlixOne.InventoryManagement.Repository
             _books = new ConcurrentDictionary<string, Book>();
         }
 
-        private static InventoryContext _instance;
+        private static InventoryContext _context;
         private static object _lock = new object();
 
-        public static InventoryContext Instance
+        public static InventoryContext Singleton
         {
             get
             {
-                if (_instance == null)
+                if (_context == null)
                 {
                     lock (_lock)
                     {
-                        if (_instance == null)
+                        if (_context == null)
                         {
-                            _instance = new InventoryContext();
+                            _context = new InventoryContext();
                         }
                     }
                 }
 
-                return _instance;
+                return _context;
             }
         }
 

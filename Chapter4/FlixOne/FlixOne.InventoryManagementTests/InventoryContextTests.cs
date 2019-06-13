@@ -47,7 +47,7 @@ namespace FlixOne.InventoryManagementTests
             Task.WaitAll(tasks.ToArray());
 
             // all quantities should be 0            
-            foreach (var book in InventoryContext.Instance.GetBooks())
+            foreach (var book in InventoryContext.Singleton.GetBooks())
             {
                 Assert.AreEqual(0, book.Quantity);
             }
@@ -57,7 +57,7 @@ namespace FlixOne.InventoryManagementTests
         {
             return Task.Run(() =>
             {                
-                Assert.IsTrue(InventoryContext.Instance.AddBook(book));
+                Assert.IsTrue(InventoryContext.Singleton.AddBook(book));
             });
         }
 
@@ -65,7 +65,7 @@ namespace FlixOne.InventoryManagementTests
         {
             return Task.Run(() =>
             {                
-                Assert.IsTrue(InventoryContext.Instance.UpdateQuantity(book, quantity));
+                Assert.IsTrue(InventoryContext.Singleton.UpdateQuantity(book, quantity));
             });
         }
 

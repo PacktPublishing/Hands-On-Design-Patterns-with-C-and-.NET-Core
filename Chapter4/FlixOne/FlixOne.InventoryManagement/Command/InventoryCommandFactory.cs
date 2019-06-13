@@ -11,7 +11,7 @@ namespace FlixOne.InventoryManagement.Command
     public class InventoryCommandFactory : IInventoryCommandFactory
     {
         private readonly IUserInterface _userInterface;
-        private readonly IInventoryContext _context = InventoryContext.Instance;
+        private readonly IInventoryContext _context = InventoryContext.Singleton;
 
         public InventoryCommandFactory(IUserInterface userInterface)
         {
