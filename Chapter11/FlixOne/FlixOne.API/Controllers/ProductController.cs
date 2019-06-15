@@ -12,15 +12,23 @@ namespace FlixOne.API.Controllers
     [Route("api/[controller]")]
     public class ProductController : Controller
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public IEnumerable<Product> Products()
         {
             var query = new ProductQuery();
             var handler = ProductQueryHandlerFactory.Build(query);
             return handler.Get();
         }
-
+        /// <summary>
+        /// Retrieve a product by Product Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public Product Get(string id)
@@ -29,7 +37,11 @@ namespace FlixOne.API.Controllers
             var handler = ProductQueryHandlerFactory.Build(query);
             return handler.Get();
         }
-
+        /// <summary>
+        /// Saeve Product
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         // POST api/<controller>
         [HttpPost]
         public IActionResult Post([FromBody] Product product)
@@ -42,7 +54,11 @@ namespace FlixOne.API.Controllers
             return Ok(product);
 
         }
-
+        /// <summary>
+        /// Delete a product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
         public IActionResult Delete(string id)

@@ -1,17 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
+using FlixOne.DB.Contexts;
+using FlixOne.DB.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace FlixOne.API
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -30,13 +35,26 @@ namespace FlixOne.API
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddDbContext<ProductContext>(
+                o => o.UseSqlServer(Configuration.GetConnectionString("ProductConnection"),
+                    assembly => assembly.MigrationsAssembly(typeof(ProductContext).Assembly.FullName)));
 
             //Register Swagger
             services.AddSwaggerGen(swagger =>
             {
                 swagger.SwaggerDoc("v1", new Info { Title = "Product APIs", Version = "v1" });
+                swagger.DescribeAllParametersInCamelCase();
+                swagger.DescribeAllEnumsAsStrings();
+                // Set the comments path for the Swagger JSON and UI.
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                swagger.IncludeXmlComments(xmlPath);
             });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
