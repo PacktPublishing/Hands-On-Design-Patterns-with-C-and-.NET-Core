@@ -17,6 +17,7 @@ namespace FlixOne.Common.Models
         [Column(TypeName = "decimal(5, 2)")]
         public decimal Price { get; set; }
         public DateTime CreatedOn { get; set; } = DateTime.UtcNow;
+        [Column(TypeName = "bit")]
         public bool IsDeleted { get; set; } = false;
         public Guid CategoryId { get; set; }
 

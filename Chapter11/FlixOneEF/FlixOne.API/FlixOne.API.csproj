@@ -22,4 +22,9 @@
     <ProjectReference Include="..\FlixOne.DB\FlixOne.DB.csproj" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
+
 </Project>

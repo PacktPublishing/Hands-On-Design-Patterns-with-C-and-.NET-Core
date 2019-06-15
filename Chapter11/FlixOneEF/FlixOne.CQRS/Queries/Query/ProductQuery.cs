@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using FlixOne.CQRS.Domain.Entity;
+using FlixOne.Common.Models;
 
 namespace FlixOne.CQRS.Queries.Query
 {

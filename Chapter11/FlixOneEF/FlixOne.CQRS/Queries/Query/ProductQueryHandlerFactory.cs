@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using FlixOne.CQRS.Domain.Entity;
+using FlixOne.Common.Models;
 using FlixOne.CQRS.Queries.Handler;
 
 namespace FlixOne.CQRS.Queries.Query

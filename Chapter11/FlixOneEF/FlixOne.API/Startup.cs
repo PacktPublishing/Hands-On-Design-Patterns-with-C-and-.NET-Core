@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using FlixOne.CQRS.DI;
 using FlixOne.DB.Contexts;
 using FlixOne.DB.Persistence;
 using Microsoft.AspNetCore.Builder;
@@ -37,7 +38,8 @@ namespace FlixOne.API
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddTransient<IProductRepository, ProductRepository>();
+            //add CQRS
+            services.AddService();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<ProductContext>(
                 o => o.UseSqlServer(Configuration.GetConnectionString("ProductConnection"),

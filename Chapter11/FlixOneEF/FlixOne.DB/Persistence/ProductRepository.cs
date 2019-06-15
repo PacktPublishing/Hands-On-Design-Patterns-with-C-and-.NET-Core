@@ -14,8 +14,9 @@ namespace FlixOne.DB.Persistence
 
         public ProductRepository()
         {
-            _context= new ProductContext(new DbContextOptions<ProductContext>());
+           _context = new ProductContext(DbContextOptionsBuilder().Options);
         }
+
         public ProductRepository(ProductContext context)
         {
             _context = context;
@@ -40,5 +41,14 @@ namespace FlixOne.DB.Persistence
         }
 
         public void Update(Product product) => _context.Update(product);
+
+        private static DbContextOptionsBuilder<ProductContext> DbContextOptionsBuilder()
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<ProductContext>();
+            optionsBuilder.UseSqlServer(
+                "Data Source=.;Initial Catalog=FlixOneEFCore;Integrated Security=True;MultipleActiveResultSets=True",
+                assembly => assembly.MigrationsAssembly(typeof(ProductContext).Assembly.FullName));
+            return optionsBuilder;
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using FlixOne.Common.Models;
 using FlixOne.CQRS.Commands.Command;
-using FlixOne.CQRS.Domain.Entity;
 using FlixOne.CQRS.Helper;
 using FlixOne.CQRS.Queries.Query;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FlixOne.API.Controllers
 {
+    /// <inheritdoc />
     [Route("api/[controller]")]
     public class ProductController : Controller
     {

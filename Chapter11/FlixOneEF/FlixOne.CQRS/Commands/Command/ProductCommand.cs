@@ -1,4 +1,5 @@
 ﻿using System;
+using FlixOne.Common.Models;
 using FlixOne.CQRS.Domain.Entity;
 
 namespace FlixOne.CQRS.Commands.Command
