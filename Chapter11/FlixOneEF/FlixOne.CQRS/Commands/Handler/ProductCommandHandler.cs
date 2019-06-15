@@ -31,7 +31,8 @@ namespace FlixOne.CQRS.Commands.Handler
                     Description = product.Description,
                     Name = product.Name,
                     Image = product.Image,
-                    Price = product.Price
+                    Price = product.Price,
+                     CategoryId = product.CategoryId
                 };
                 var existingProduct = _productRepository.GetBy(model.Id);
                 if (existingProduct == null)

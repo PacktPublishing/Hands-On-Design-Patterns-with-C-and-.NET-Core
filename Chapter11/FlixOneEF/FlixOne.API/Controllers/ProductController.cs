@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using FlixOne.API.Models;
 using FlixOne.Common.Models;
 using FlixOne.CQRS.Commands.Command;
 using FlixOne.CQRS.Helper;
@@ -14,7 +16,7 @@ namespace FlixOne.API.Controllers
     public class ProductController : Controller
     {
         /// <summary>
-        /// 
+        /// Product Listing
         /// </summary>
         /// <returns></returns>
         // GET: api/<controller>
@@ -38,15 +40,26 @@ namespace FlixOne.API.Controllers
             var handler = ProductQueryHandlerFactory.Build(query);
             return handler.Get();
         }
+
         /// <summary>
-        /// Saeve Product
+        /// Save Product
         /// </summary>
-        /// <param name="product"></param>
         /// <returns></returns>
         // POST api/<controller>
         [HttpPost]
-        public IActionResult Post([FromBody] Product product)
+        public IActionResult Post([FromBody] ProductViewModel productViewModel)
         {
+            var product = new Product
+            {
+                Id = productViewModel.Id,
+                CategoryId = productViewModel.CategoryId,
+                CreatedOn = DateTime.UtcNow,
+                Description = productViewModel.Description,
+                Image = productViewModel.Image,
+                IsDeleted = productViewModel.IsDeleted,
+                Name = productViewModel.Name,
+                Price = productViewModel.Price
+            };
             var command = new SaveProductCommand(product);
             var handler = ProductCommandHandlerFactory.Build(command);
             var response = handler.Execute();
