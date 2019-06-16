@@ -31,7 +31,7 @@ namespace FlixOne.Web.Persistence
             return pDiscounts;
         }
 
-        public IEnumerable<Product> GetProducts(Sort sort,string searchTerm)
+        public IEnumerable<Product> GetProducts(Sort sort,string searchTerm,int? pageNumber, int? pageSize)
         {
             if(sort.ColName==null)
                 sort.ColName = "";
@@ -42,46 +42,47 @@ namespace FlixOne.Web.Persistence
                     var products = sort.Order == SortOrder.A
                         ? ListProducts(searchTerm).OrderBy(x => x.Category.Name)
                         : ListProducts(searchTerm).OrderByDescending(x => x.Category.Name);
-                    return PDiscounts(products);
+                    return PDiscounts(products, pageNumber ?? 1, pageSize ?? 3);
 
-                }
+                    }
                 case "ProductDescription":
                 {
                     var products = sort.Order == SortOrder.A
                         ? ListProducts(searchTerm).OrderBy(x => x.Description)
                         : ListProducts(searchTerm).OrderByDescending(x => x.Description);
-                    return PDiscounts(products);
+                    return PDiscounts(products, pageNumber ?? 1, pageSize ?? 3);
 
-                }
+                    }
                 case "productname":
                 {
                     var products = sort.Order == SortOrder.A
                         ? ListProducts(searchTerm).OrderBy(x => x.Name)
                         : ListProducts(searchTerm).OrderByDescending(x => x.Name);
-                    return PDiscounts(products);
-                }
+                    return PDiscounts(products, pageNumber ?? 1, pageSize ?? 3);
+                    }
                 case "productprice":
                 {
                     var products = sort.Order == SortOrder.A
                         ? ListProducts(searchTerm).OrderBy(x => x.Price)
                         : ListProducts(searchTerm).OrderByDescending(x => x.Price);
-                    return PDiscounts(products);
+                    return PDiscounts(products, pageNumber ?? 1, pageSize ?? 3);
+
                 }
                 default:
-                    return PDiscounts(ListProducts(searchTerm).OrderBy(x => x.Name));
+                   return PDiscounts(ListProducts(searchTerm).OrderBy(x => x.Name), pageNumber ?? 1, pageSize ?? 3);
             }
         }
 
-        private List<Product> PDiscounts(IOrderedEnumerable<Product> products)
+        private PagedList<Product> PDiscounts(IOrderedEnumerable<Product> products, int pageNumber, int pageSize)
         {
             var pDiscounts = new List<Product>();
-
+            
             products.ToList().ForEach(product =>
             {
                 product.Discount = GetDiscountBy(product.Id);
                 pDiscounts.Add(product);
             });
-            return pDiscounts;
+            return new PagedList<Product>(pDiscounts, pDiscounts.Count,pageNumber, pageSize);
         }
 
         private IEnumerable<Product> ListProducts(string searchTerm = "")

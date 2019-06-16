@@ -7,7 +7,7 @@ namespace FlixOne.Web.Persistence
     public interface IInventoryRepository
     {
         IEnumerable<Product> GetProducts();
-        IEnumerable<Product> GetProducts(Sort sort,string searchTerm);
+        IEnumerable<Product> GetProducts(Sort sort,string searchTerm, int? pageNumber, int? pageSize);
         Product GetProduct(Guid id);
         bool AddProduct(Product product);
         bool UpdateProduct(Product product);

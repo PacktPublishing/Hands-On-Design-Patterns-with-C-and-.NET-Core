@@ -14,7 +14,11 @@ namespace FlixOne.Web.Models
         [DisplayName("Image")] public string ProductImage { get; set; }
         [DisplayName("Price")] public decimal ProductPrice { get; set; }
         [DisplayName("Product Desc.")] public string CategoryDescription { get; set; }
-        [DisplayName("Discount Rate")] [DisplayFormat(DataFormatString = @"{0:#\%}")] public decimal ProductDiscountRate { get; set; }
+
+        [DisplayName("Discount Rate")]
+        [DisplayFormat(DataFormatString = @"{0:#\%}")]
+        public decimal ProductDiscountRate { get; set; }
+
         [DisplayName("Discount")] public decimal ProductDiscount { get; set; }
         [DisplayName("Net Price")] public decimal ProductNetPrice { get; set; }
 
