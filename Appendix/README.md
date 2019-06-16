@@ -3,7 +3,7 @@ _A book with lot of practical and architectural styles for Microservices using .
 
 Hands-On Design Patterns with C# and .NET Core, published by Packt. 
 
-##	Chapter-13: Miscellaneous Best Practices ##
+##	Appendix: Miscellaneous Best Practices ##
 *	Use case discussion
 *	Best practices
 *	Other design patterns
