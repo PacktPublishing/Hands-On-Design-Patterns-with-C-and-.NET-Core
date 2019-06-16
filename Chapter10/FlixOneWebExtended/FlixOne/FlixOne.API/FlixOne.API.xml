@@ -140,6 +140,43 @@
             </summary>
             <param name="product"></param>
         </member>
+        <member name="T:FlixOne.API.Persistence.ProductRepository">
+            <inheritdoc />
+        </member>
+        <member name="M:FlixOne.API.Persistence.ProductRepository.#ctor(FlixOne.API.Contexts.ProductContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:FlixOne.API.Persistence.ProductRepository.GetAll">
+            <summary>
+            Product Listing
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Persistence.ProductRepository.GetBy(System.Guid)">
+            <summary>
+            Get Product by its unique id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Persistence.ProductRepository.Add(FlixOne.API.Models.Product)">
+            <summary>
+            Add new product
+            </summary>
+            <param name="product">Product model</param>
+        </member>
+        <member name="M:FlixOne.API.Persistence.ProductRepository.Update(FlixOne.API.Models.Product)">
+            <summary>
+            Update an existing product
+            </summary>
+            <param name="product"></param>
+        </member>
+        <member name="M:FlixOne.API.Persistence.ProductRepository.Remove(System.Guid)">
+            <summary>
+            Remove a specific Product
+            </summary>
+            <param name="id"></param>
+        </member>
         <member name="M:FlixOne.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
             <inheritdoc />
         </member>

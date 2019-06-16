@@ -37,10 +37,10 @@ namespace FlixOne.API
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<ProductContext>(
-                o => o.UseSqlServer(Configuration.GetConnectionString("ProductConnection"),
+                o => o.UseSqlServer(Configuration.GetConnectionString("FlixOneConnection"),
                     assembly => assembly.MigrationsAssembly(typeof(ProductContext).Assembly.FullName)));
 
             //Register Swagger
