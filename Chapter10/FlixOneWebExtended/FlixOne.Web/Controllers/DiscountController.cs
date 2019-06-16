@@ -7,21 +7,21 @@ namespace FlixOne.Web.Controllers
 {
     public class DiscountController : Controller
     {
-        private readonly IInventoryRepositry _repositry;
+        private readonly IInventoryRepository _repository;
 
-        public DiscountController(IInventoryRepositry inventoryRepositry)
+        public DiscountController(IInventoryRepository inventoryRepository)
         {
-            _repositry = inventoryRepositry;
+            _repository = inventoryRepository;
         }
 
         public IActionResult Index()
         {
-            return View(_repositry.GetDiscounts().ToDiscountViewModel());
+            return View(_repository.GetDiscounts().ToDiscountViewModel());
         }
 
         public IActionResult Details(Guid id)
         {
-            return View("Index", _repositry.GetDiscountBy(id).ToDiscountViewModel());
+            return View("Index", _repository.GetDiscountBy(id).ToDiscountViewModel());
         }
 
         public IActionResult Create()

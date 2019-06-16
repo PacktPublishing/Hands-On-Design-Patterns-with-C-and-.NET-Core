@@ -7,13 +7,13 @@ namespace FlixOne.Web.Controllers
 {
     public class CategoryController: Controller
     {
-        private readonly IInventoryRepositry _inventoryRepositry;
+        private readonly IInventoryRepository _inventoryRepository;
 
-        public CategoryController(IInventoryRepositry inventoryRepositry) => _inventoryRepositry = inventoryRepositry;
+        public CategoryController(IInventoryRepository inventoryRepository) => _inventoryRepository = inventoryRepository;
 
-        public IActionResult Index() => View(_inventoryRepositry.GetCategories());
+        public IActionResult Index() => View(_inventoryRepository.GetCategories());
         
-        public IActionResult Details(Guid id) => View(_inventoryRepositry.GetCategory(id));
+        public IActionResult Details(Guid id) => View(_inventoryRepository.GetCategory(id));
 
         public IActionResult Create() => View();
 
@@ -24,7 +24,7 @@ namespace FlixOne.Web.Controllers
         {
             try
             {
-                _inventoryRepositry.AddCategory(category);
+                _inventoryRepository.AddCategory(category);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -34,7 +34,7 @@ namespace FlixOne.Web.Controllers
             }
         }
 
-        public IActionResult Edit(Guid id) => View(_inventoryRepositry.GetCategory(id));
+        public IActionResult Edit(Guid id) => View(_inventoryRepository.GetCategory(id));
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -42,7 +42,7 @@ namespace FlixOne.Web.Controllers
         {
             try
             {
-                _inventoryRepositry.UpdateCategory(category);
+                _inventoryRepository.UpdateCategory(category);
 
                 return RedirectToAction(nameof(Index));
             }
@@ -52,7 +52,7 @@ namespace FlixOne.Web.Controllers
             }
         }
 
-        public IActionResult Delete(Guid id) => View(_inventoryRepositry.GetCategory(id));
+        public IActionResult Delete(Guid id) => View(_inventoryRepository.GetCategory(id));
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -60,7 +60,7 @@ namespace FlixOne.Web.Controllers
         {
             try
             {
-                _inventoryRepositry.RemoveCategory(category);
+                _inventoryRepository.RemoveCategory(category);
 
                 return RedirectToAction(nameof(Index));
             }

@@ -10,26 +10,26 @@ namespace FlixOne.Web.Controllers
 {
     public class ProductController : Controller
     {
-        private readonly IInventoryRepositry _repositry;
+        private readonly IInventoryRepository _repository;
 
-        public ProductController(IInventoryRepositry inventoryRepositry) => _repositry = inventoryRepositry;
+        public ProductController(IInventoryRepository inventoryRepository) => _repository = inventoryRepository;
 
-        public IActionResult Index([FromQuery]Sort sort)
+        public IActionResult Index([FromQuery]Sort sort, string searchTerm)
         {
             ViewData["cSort"] = sort.Order;
-            ViewData["cSort"] = (SortOrder) ViewData["cSort"] == SortOrder.A ? SortOrder.D : sort.Order;
-            var products = _repositry.GetProducts(sort);
+            ViewData["cSort"] = (SortOrder)ViewData["cSort"] == SortOrder.A ? SortOrder.D : sort.Order;
+            var products = _repository.GetProducts(sort, searchTerm);
             return View(products.ToProductvm());
         }
 
-        public IActionResult Details(Guid id) => View(_repositry.GetProduct(id).ToProductvm());
-        
+        public IActionResult Details(Guid id) => View(_repository.GetProduct(id).ToProductvm());
+
         public IActionResult Create() => View();
         public IActionResult Report()
         {
-            var mango = _repositry.GetProduct(new Guid("09C2599E-652A-4807-A0F8-390A146F459B"));
-            var apple = _repositry.GetProduct(new Guid("7AF8C5C2-FA98-42A0-B4E0-6D6A22FC3D52"));
-            var orange = _repositry.GetProduct(new Guid("E2A8D6B3-A1F9-46DD-90BD-7F797E5C3986"));
+            var mango = _repository.GetProduct(new Guid("09C2599E-652A-4807-A0F8-390A146F459B"));
+            var apple = _repository.GetProduct(new Guid("7AF8C5C2-FA98-42A0-B4E0-6D6A22FC3D52"));
+            var orange = _repository.GetProduct(new Guid("E2A8D6B3-A1F9-46DD-90BD-7F797E5C3986"));
             var model = new List<MessageViewModel>();
             //provider
             ProductRecorder productProvider = new ProductRecorder();
@@ -65,7 +65,7 @@ namespace FlixOne.Web.Controllers
         {
             try
             {
-                _repositry.AddProduct(product);
+                _repository.AddProduct(product);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -73,8 +73,8 @@ namespace FlixOne.Web.Controllers
                 return View();
             }
         }
-        
-       public IActionResult Edit(Guid id) => View(_repositry.GetProduct(id));
+
+        public IActionResult Edit(Guid id) => View(_repository.GetProduct(id));
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -82,7 +82,7 @@ namespace FlixOne.Web.Controllers
         {
             try
             {
-                _repositry.UpdateProduct(product);
+                _repository.UpdateProduct(product);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -91,7 +91,7 @@ namespace FlixOne.Web.Controllers
             }
         }
 
-        public IActionResult Delete(Guid id) => View(_repositry.GetProduct(id));
+        public IActionResult Delete(Guid id) => View(_repository.GetProduct(id));
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -99,7 +99,7 @@ namespace FlixOne.Web.Controllers
         {
             try
             {
-                _repositry.RemoveProduct(product);
+                _repository.RemoveProduct(product);
                 return RedirectToAction(nameof(Index));
             }
             catch

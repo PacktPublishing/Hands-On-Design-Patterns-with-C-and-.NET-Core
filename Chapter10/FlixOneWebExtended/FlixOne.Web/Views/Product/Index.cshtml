@@ -10,6 +10,13 @@
 <p>
     <a asp-action="Create">Create New Product</a> | <a asp-action="Index" asp-controller="Discount">Products Discount Listing</a> | <a asp-action="Report">Audit Report</a>
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Search by: @Html.TextBox("searchTerm")
+        <input type="submit" value="Search" class="btn-sm btn-success" />
+    </p>
+}
 <table class="table">
     <thead>
         <tr>

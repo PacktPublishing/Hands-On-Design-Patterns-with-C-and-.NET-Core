@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using FlixOne.Web.Common;
 using FlixOne.Web.Contexts;
 using FlixOne.Web.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query;
 
 namespace FlixOne.Web.Persistence
 {
-    public class InventoryRepositry : IInventoryRepositry
+    public class InventoryRepository : IInventoryRepository
     {
         private readonly IHelper _helper;
         private readonly InventoryContext _inventoryContext;
 
-        public InventoryRepositry(InventoryContext inventoryContext, IHelper helper)
+        public InventoryRepository(InventoryContext inventoryContext, IHelper helper)
         {
             _inventoryContext = inventoryContext;
             _helper = helper;
@@ -33,7 +31,7 @@ namespace FlixOne.Web.Persistence
             return pDiscounts;
         }
 
-        public IEnumerable<Product> GetProducts(Sort sort)
+        public IEnumerable<Product> GetProducts(Sort sort,string searchTerm)
         {
             if(sort.ColName==null)
                 sort.ColName = "";
@@ -42,43 +40,43 @@ namespace FlixOne.Web.Persistence
                 case "categoryname":
                 {
                     var products = sort.Order == SortOrder.A
-                        ? ListProducts().OrderBy(x => x.Category.Name)
-                        : ListProducts().OrderByDescending(x => x.Category.Name);
+                        ? ListProducts(searchTerm).OrderBy(x => x.Category.Name)
+                        : ListProducts(searchTerm).OrderByDescending(x => x.Category.Name);
                     return PDiscounts(products);
 
                 }
                 case "ProductDescription":
                 {
                     var products = sort.Order == SortOrder.A
-                        ? ListProducts().OrderBy(x => x.Description)
-                        : ListProducts().OrderByDescending(x => x.Description);
+                        ? ListProducts(searchTerm).OrderBy(x => x.Description)
+                        : ListProducts(searchTerm).OrderByDescending(x => x.Description);
                     return PDiscounts(products);
 
                 }
                 case "productname":
                 {
                     var products = sort.Order == SortOrder.A
-                        ? ListProducts().OrderBy(x => x.Name)
-                        : ListProducts().OrderByDescending(x => x.Name);
+                        ? ListProducts(searchTerm).OrderBy(x => x.Name)
+                        : ListProducts(searchTerm).OrderByDescending(x => x.Name);
                     return PDiscounts(products);
                 }
                 case "productprice":
                 {
                     var products = sort.Order == SortOrder.A
-                        ? ListProducts().OrderBy(x => x.Price)
-                        : ListProducts().OrderByDescending(x => x.Price);
+                        ? ListProducts(searchTerm).OrderBy(x => x.Price)
+                        : ListProducts(searchTerm).OrderByDescending(x => x.Price);
                     return PDiscounts(products);
                 }
                 default:
-                    return PDiscounts(ListProducts().OrderBy(x => x.Name));
+                    return PDiscounts(ListProducts(searchTerm).OrderBy(x => x.Name));
             }
         }
 
-        private List<Product> PDiscounts(IOrderedQueryable<Product> products)
+        private List<Product> PDiscounts(IOrderedEnumerable<Product> products)
         {
             var pDiscounts = new List<Product>();
 
-            products.AsNoTracking().ToList().ForEach(product =>
+            products.ToList().ForEach(product =>
             {
                 product.Discount = GetDiscountBy(product.Id);
                 pDiscounts.Add(product);
@@ -86,8 +84,19 @@ namespace FlixOne.Web.Persistence
             return pDiscounts;
         }
 
-        private IIncludableQueryable<Product, Category> ListProducts() =>
-            _inventoryContext.Products.Include(c => c.Category);
+        private IEnumerable<Product> ListProducts(string searchTerm = "")
+        {
+            var includableQueryable = _inventoryContext.Products.Include(c => c.Category).ToList();
+            if (!string.IsNullOrEmpty(searchTerm))
+            {
+                includableQueryable = includableQueryable.Where(x =>
+                    x.Name.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase) ||
+                    x.Description.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase) ||
+                    x.Category.Name.Contains(searchTerm, StringComparison.InvariantCultureIgnoreCase)).ToList();
+            }
+
+            return includableQueryable;
+        }
 
         public Product GetProduct(Guid id) =>
             _inventoryContext.Products.Include(c => c.Category).FirstOrDefault(x => x.Id == id);

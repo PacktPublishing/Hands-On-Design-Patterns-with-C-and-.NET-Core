@@ -4,10 +4,10 @@ using FlixOne.Web.Models;
 
 namespace FlixOne.Web.Persistence
 {
-    public interface IInventoryRepositry
+    public interface IInventoryRepository
     {
         IEnumerable<Product> GetProducts();
-        IEnumerable<Product> GetProducts(Sort sort);
+        IEnumerable<Product> GetProducts(Sort sort,string searchTerm);
         Product GetProduct(Guid id);
         bool AddProduct(Product product);
         bool UpdateProduct(Product product);
