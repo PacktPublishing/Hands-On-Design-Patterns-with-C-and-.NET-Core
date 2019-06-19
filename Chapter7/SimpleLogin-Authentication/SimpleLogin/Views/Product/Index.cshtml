@@ -5,7 +5,7 @@
 }
 
 <h1>Product Listing</h1>
-<hr/>
+<hr />
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -24,45 +24,46 @@
             <th>
                 @Html.DisplayNameFor(model => model.ProductPrice)
             </th>
-            
+
             <th>
                 @Html.DisplayNameFor(model => model.CategoryName)
             </th>
             @*<th>
-                @Html.DisplayNameFor(model => model.CategoryDescription)
-            </th>*@
+                    @Html.DisplayNameFor(model => model.CategoryDescription)
+                </th>*@
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-           <td>
-                @Html.HiddenFor(modelItem => item.ProductId)
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductImage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductPrice)
-            </td>
-           <td>
-                @Html.HiddenFor(modelItem => item.CategoryId)
-                @Html.DisplayFor(modelItem => item.CategoryName)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.CategoryDescription)
-            </td>*@
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {  id=item.ProductId  }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => item.ProductId)
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductDescription)
+                </td>
+                <td>
+                    <img src="data:image/png;base64, @Html.DisplayFor(modelItem => item.ProductImage)" width="50" alt="@Html.DisplayFor(modelItem => item.ProductName)" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.CategoryId)
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CategoryDescription)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
