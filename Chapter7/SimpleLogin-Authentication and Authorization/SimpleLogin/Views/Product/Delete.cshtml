@@ -30,7 +30,7 @@
                 @Html.DisplayFor(model => model.Description)
             </dd>
             <dt>
-                @Html.DisplayNameFor(model => model.Image)
+                <img src='data:image/png;base64,@Html.DisplayFor(modelItem => modelItem.Image)' height="50" />
             </dt>
             <dd>
                 @Html.DisplayFor(model => model.Image)

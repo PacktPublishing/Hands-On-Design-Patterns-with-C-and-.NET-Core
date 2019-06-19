@@ -27,9 +27,10 @@
             @Html.DisplayFor(model => model.ProductDescription)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ProductImage)
-            </dt>
-       <dt>
+            <img src='data:image/png;base64,@Html.DisplayFor(model => model.ProductImage)' height="50" />
+
+        </dt>
+        <dt>
             @Html.DisplayNameFor(model => model.ProductPrice)
         </dt>
         <dd>
@@ -56,6 +57,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.ProductId }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
     <a asp-action="Index">List Products</a>
 </div>
