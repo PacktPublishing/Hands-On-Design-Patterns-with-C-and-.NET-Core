@@ -32,7 +32,7 @@
             @Html.DisplayNameFor(model => model.ProductImage)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ProductImage)
+        <img src="data:image/png;base64, @Html.DisplayFor(model => model.ProductImage)"  width="50" alt="@Html.DisplayFor(model => model.ProductName)" />
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.ProductPrice)

@@ -37,7 +37,7 @@ namespace SimpleLogin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(Guid id, [FromBody] Product product)
+        public IActionResult Edit(Guid id, [Bind("Id, Name,Description,Image,Price,CategoryId")] Product product)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace SimpleLogin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(Guid id, [FromBody] Product product)
+        public IActionResult Delete(Guid id, [Bind("Id, Name,Description,Image,Price,CategoryId")] Product product)
         {
             try
             {
