@@ -1,0 +1,24 @@
+<h1>Product Listing</h1>
+
+<p>Product Listing...</p>
+
+<p *ngIf="!forecasts"><em>Loading...</em></p>
+
+<table class='table table-striped' *ngIf="forecasts">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Cat. Name</th>
+      <th>Price</th>
+      <th>Desc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let forecast of forecasts">
+      <td>{{ forecast.productName }}</td>
+      <td>{{ forecast.categoryName }}</td>
+      <td>{{ forecast.productPrice }}</td>
+      <td>{{ forecast.productDescription }}</td>
+    </tr>
+  </tbody>
+</table>

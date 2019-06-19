@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FlixOne.API</name>
+    </assembly>
+    <members>
+        <member name="T:FlixOne.API.Contexts.ProductContext">
+            <inheritdoc />
+        </member>
+        <member name="M:FlixOne.API.Contexts.ProductContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{FlixOne.API.Contexts.ProductContext})">
+            <inheritdoc />
+        </member>
+        <member name="M:FlixOne.API.Contexts.ProductContext.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="P:FlixOne.API.Contexts.ProductContext.Products">
+            <summary>
+            Products
+            </summary>
+        </member>
+        <member name="P:FlixOne.API.Contexts.ProductContext.Categories">
+            <summary>
+            categories
+            </summary>
+        </member>
+        <member name="T:FlixOne.API.Controllers.ProductController">
+            <inheritdoc />
+        </member>
+        <member name="M:FlixOne.API.Controllers.ProductController.#ctor(FlixOne.API.Persistence.IProductRepository)">
+            <inheritdoc />
+        </member>
+        <member name="M:FlixOne.API.Controllers.ProductController.GetList">
+            <summary>
+            Product Listing
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Controllers.ProductController.Get(System.String)">
+            <summary>
+            Retrieve product for a specific product using productId
+            </summary>
+            <param name="productId">Unique Id of Product</param>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Controllers.ProductController.Post(FlixOne.API.Models.ProductViewModel)">
+            <summary>
+            Add new product
+            </summary>
+            <param name="productvm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Controllers.ProductController.Update(System.String,FlixOne.API.Models.ProductViewModel)">
+            <summary>
+            Update an existing product
+            </summary>
+            <param name="productid">Unique product Id</param>
+            <param name="productvm">Product - is being updated</param>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Controllers.ProductController.Delete(System.String)">
+            <summary>
+            Remove a specific product
+            </summary>
+            <param name="productid">Unique Product Id</param>
+            <returns></returns>
+        </member>
+        <member name="T:FlixOne.API.Models.Product">
+            <summary>
+            Product model
+            </summary>
+        </member>
+        <member name="P:FlixOne.API.Models.Product.Id">
+            <summary>
+            Unique Product Id
+            </summary>
+        </member>
+        <member name="P:FlixOne.API.Models.Product.Name">
+            <summary>
+            Product Name
+            </summary>
+        </member>
+        <member name="P:FlixOne.API.Models.Product.Description">
+            <summary>
+            Product Description
+            </summary>
+        </member>
+        <member name="P:FlixOne.API.Models.Product.Image">
+            <summary>
+            Product icon
+            </summary>
+        </member>
+        <member name="P:FlixOne.API.Models.Product.Price">
+            <summary>
+            Product Price
+            </summary>
+        </member>
+        <member name="P:FlixOne.API.Models.Product.CategoryId">
+            <summary>
+            Unique Category Id
+            </summary>
+        </member>
+        <member name="P:FlixOne.API.Models.Product.Category">
+            <summary>
+            Category
+            </summary>
+        </member>
+        <member name="T:FlixOne.API.Persistence.IProductRepository">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:FlixOne.API.Persistence.IProductRepository.Add(FlixOne.API.Models.Product)">
+            <summary>
+            Add new product
+            </summary>
+            <param name="product">Product model</param>
+        </member>
+        <member name="M:FlixOne.API.Persistence.IProductRepository.GetAll">
+            <summary>
+            Product Listing
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Persistence.IProductRepository.GetBy(System.Guid)">
+            <summary>
+            Get Product by its unique id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Persistence.IProductRepository.Remove(System.Guid)">
+            <summary>
+            Remove a specific Product
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:FlixOne.API.Persistence.IProductRepository.Update(FlixOne.API.Models.Product)">
+            <summary>
+            Update an existing product
+            </summary>
+            <param name="product"></param>
+        </member>
+        <member name="T:FlixOne.API.Persistence.ProductRepository">
+            <inheritdoc />
+        </member>
+        <member name="M:FlixOne.API.Persistence.ProductRepository.#ctor(FlixOne.API.Contexts.ProductContext)">
+            <inheritdoc />
+        </member>
+        <member name="M:FlixOne.API.Persistence.ProductRepository.GetAll">
+            <summary>
+            Product Listing
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Persistence.ProductRepository.GetBy(System.Guid)">
+            <summary>
+            Get Product by its unique id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Persistence.ProductRepository.Add(FlixOne.API.Models.Product)">
+            <summary>
+            Add new product
+            </summary>
+            <param name="product">Product model</param>
+        </member>
+        <member name="M:FlixOne.API.Persistence.ProductRepository.Update(FlixOne.API.Models.Product)">
+            <summary>
+            Update an existing product
+            </summary>
+            <param name="product"></param>
+        </member>
+        <member name="M:FlixOne.API.Persistence.ProductRepository.Remove(System.Guid)">
+            <summary>
+            Remove a specific Product
+            </summary>
+            <param name="id"></param>
+        </member>
+        <member name="M:FlixOne.API.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

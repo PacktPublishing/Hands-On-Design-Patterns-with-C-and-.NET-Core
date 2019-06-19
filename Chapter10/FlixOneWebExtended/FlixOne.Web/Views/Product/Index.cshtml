@@ -1,0 +1,116 @@
+﻿@using System.Globalization
+@using FlixOne.Web.Common
+@model FlixOne.Web.Common.PagedList<ProductViewModel>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>Product Listing</h2>
+
+<p>
+    <a asp-action="Create">Create New Product</a> | <a asp-action="Index" asp-controller="Discount">Products Discount Listing</a> | <a asp-action="Report">Audit Report</a>
+</p>
+<form asp-action="Index" method="get">
+    <div class="no-gutters">
+        <p>
+            Search by: <input type="text" name="searchTerm" value="@ViewData["currentSearchTerm"]" placeholder="Search Text" />
+            <input type="submit" value="Search" class="btn btn-sm btn-success" />
+            <a asp-action="Index" class="btn btn-sm btn-success">Clear</a>
+        </p>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.ActionLink("CategoryName", "Index", new Sort { ColName = "CategoryName", ColType = ColumnType.Text, Order = SortOrder.A })
+            </th>
+            <th>
+                @Html.ActionLink("ProductName", "Index", new Sort { ColName = "ProductName", ColType = ColumnType.Text, Order = SortOrder.A })
+
+            </th>
+            <th>
+                @Html.ActionLink("ProductDescription", "Index", new Sort { ColName = "ProductDescription", ColType = ColumnType.Text, Order = SortOrder.A })
+            </th>
+            <th>
+                ProductImage
+            </th>
+            <th>
+                @Html.ActionLink("ProductPrice", "Index", new Sort { ColName = "ProductPrice", ColType = ColumnType.Number, Order = SortOrder.A })
+            </th>
+            <th>
+                ProductDiscountRate
+            </th>
+            <th>
+                ProductDiscount
+            </th>
+            <th>
+                ProductNetPrice
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => item.CategoryId)
+                    @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.HiddenFor(modelItem => item.ProductId)
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductDescription)
+                </td>
+                <td>
+                    <img src='data:image/png;base64,@Html.DisplayFor(modelItem => item.ProductImage)' height="50" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    @Html.ActionLink(item.ProductDiscountRate.ToString(CultureInfo.InvariantCulture), "Details", "Discount", new { id = item.ProductId })
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductDiscount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductNetPrice)
+                </td>
+
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CategoryDescription)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.CurrentPage - 1)"
+   asp-route-currentFilter="@ViewData["currentSearchTerm"]"
+   class="btn btn-sm btn-success @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-sortOrder="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.CurrentPage + 1)"
+   asp-route-currentFilter="@ViewData["currentSearchTerm"]"
+   class="btn btn-sm btn-success @nextDisabled">
+    Next
+</a>

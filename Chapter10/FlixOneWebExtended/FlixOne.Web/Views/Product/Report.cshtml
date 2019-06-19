@@ -1,0 +1,38 @@
+﻿@model IEnumerable<MessageViewModel>
+
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>Product Audit Report</h2>
+
+<p>
+    <a asp-action="Index">Product Listing</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSuccess)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Message)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.HiddenFor(modelItem => item.MsgId)
+                @Html.DisplayFor(modelItem => item.IsSuccess)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>
+
+        </tr>
+    }
+    </tbody>
+</table>

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FlixOne.API</name>
+    </assembly>
+    <members>
+        <member name="T:FlixOne.API.Controllers.HomeController">
+            <inheritdoc />
+        </member>
+        <member name="M:FlixOne.API.Controllers.HomeController.Index">
+            <summary>
+            Home page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Controllers.HomeController.Privacy">
+            <summary>
+            Privacy page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Controllers.HomeController.Error">
+            <summary>
+            Error page
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FlixOne.API.Controllers.ErrorViewModel">
+            <summary>
+            Error model
+            </summary>
+        </member>
+        <member name="P:FlixOne.API.Controllers.ErrorViewModel.RequestId">
+            <summary>
+            Request Id
+            </summary>
+        </member>
+        <member name="P:FlixOne.API.Controllers.ErrorViewModel.ShowRequestId">
+            <summary>
+            Show Request id
+            </summary>
+        </member>
+        <member name="T:FlixOne.API.Controllers.ProductController">
+            <inheritdoc />
+        </member>
+        <member name="M:FlixOne.API.Controllers.ProductController.Products">
+            <summary>
+            Product Listing
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Controllers.ProductController.Get(System.String)">
+            <summary>
+            Retrieve a product by Product Id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Controllers.ProductController.Post(FlixOne.API.Models.ProductViewModel)">
+            <summary>
+            Save Product
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FlixOne.API.Controllers.ProductController.Delete(System.String)">
+            <summary>
+            Delete a product
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:FlixOne.API.Models.ProductViewModel">
+            <summary>
+            Product View model to Save product item
+            </summary>
+        </member>
+        <member name="T:FlixOne.API.Startup">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>
