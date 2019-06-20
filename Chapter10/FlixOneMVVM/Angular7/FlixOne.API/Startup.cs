@@ -34,7 +34,14 @@ namespace FlixOne.API
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                    builder =>
+                    {
+                        builder.WithOrigins().AllowAnyHeader().AllowAnyMethod();
+                    });
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient<IProductRepository, ProductRepository>();
@@ -63,7 +70,7 @@ namespace FlixOne.API
                 app.UseDeveloperExceptionPage();
             else
                 app.UseExceptionHandler("/Home/Error");
-
+            app.UseCors();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 

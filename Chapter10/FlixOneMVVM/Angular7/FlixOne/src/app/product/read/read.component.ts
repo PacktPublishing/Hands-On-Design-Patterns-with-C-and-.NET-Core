@@ -15,16 +15,16 @@ export class ReadComponent implements OnInit {
               private actRoute: ActivatedRoute  ) { }
 
   ngOnInit() {
-    this. productID = this.actRoute.snapshot.params['id'];
+    this. productID = this.actRoute.snapshot.params.id;
     this.loadProductDetails(this.productID);
   }
-  loadProductDetails(productID){
+  loadProductDetails(productID) {
     this.productService.getProductDetails(productID).subscribe(product => {
       this.productData = product;
     });
   }
 
-  navigation(link){
+  navigation(link) {
     this.router.navigate([link]);
   }
 }

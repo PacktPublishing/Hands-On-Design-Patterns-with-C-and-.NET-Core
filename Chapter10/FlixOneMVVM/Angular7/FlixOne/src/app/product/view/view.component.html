@@ -15,10 +15,10 @@
         <th>Description</th>
         <th>Price</th>
         <th>Action</th>
-        </tr>
+        </tr> 
         </thead>
         <tbody>
-        <tr *ngFor="let product of products; let i =index;">
+        <tr *ngFor="let product of productList | async; let i =index;">
           <td>{{i + 1}}</td>
           <td>{{product.productName}}</td>
           <td>{{product.productDescription}}</td>
