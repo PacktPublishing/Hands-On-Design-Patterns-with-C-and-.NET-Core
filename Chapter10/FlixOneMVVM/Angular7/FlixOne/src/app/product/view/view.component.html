@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12">
+      <button class="btn btn-success" (click)="getNavigation('create', '')">Create New Product</button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12">
+      <table #productsTable class="display" style="width:100%">
+        <thead>
+        <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let product of products; let i =index;">
+          <td>{{i + 1}}</td>
+          <td>{{product.productName}}</td>
+          <td>{{product.productDescription}}</td>
+          <td>$ {{product.productPrice}}</td>
+          <td>
+            <button type="button" class="btn btn-success" (click)="getNavigation('view', product.p_id)">View</button>
+            <button type="button" class="btn btn-warning" (click)="getNavigation('update', product.p_id)">Edit</button>
+            <button type="button" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
