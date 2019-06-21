@@ -66,8 +66,7 @@ is a software consultant specializing in the Microsoft technology stack includin
 
 *  [Building Microservices with .NET Core](https://www.packtpub.com/web-development/building-microservices-net-core)
 
-*  [Building Microservices with .NET Core 2.0 - Second Edition](https://www.packtpub.com/application-development/building-microservices-net-core-20-second-edition) [[Amazon]] (https://www.amazon.com/Building-Microservices-NET-Core-Transitioning-ebook/dp/B075VB9YL7)
-
+*  [Building Microservices with .NET Core 2.0 - Second Edition](https://www.packtpub.com/application-development/building-microservices-net-core-20-second-edition)
 ### Suggestions and Feedback
 [Click here](https://docs.google.com/forms/d/e/1FAIpQLSdy7dATC6QmEL81FIUuymZ0Wy9vH1jHkvpY57OiMeKGqib_Ow/viewform) if you have any feedback or suggestions.
 
