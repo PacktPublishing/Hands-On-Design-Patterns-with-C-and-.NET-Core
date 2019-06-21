@@ -44,9 +44,8 @@ With the following software and hardware list you can run all code files present
 ### Software and Hardware List
 | Chapter | Software required | OS required |
 | -------- | ------------------------------------ | ----------------------------------- |
-| 1-11 | Visual Studio 2017/2019, https://docs.microsoft.com/en-us/visualstudio/releases/2019/system-requirements? | Windows, Mac OS X, and Linux (Any) |
-| 6-12 | SQL Server 2008 R2 or later, Supported Operating System | Windows, Mac OS X, and Linux (Any) |
-|  |  | Windows|
+| 1-11 | Visual Studio 2017/2019, https://docs.microsoft.com/en-us/visualstudio/releases/2019/system-requirements? | Windows|
+| 6-12 | SQL Server 2008 R2 or later, Supported Operating System | Windows|
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](http://www.packtpub.com/sites/default/files/downloads/9781789133646_ColorImages.pdf).
 
