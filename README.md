@@ -62,7 +62,7 @@ has an M.Phil in computer science. He is a Former Microsoft MVP, Alibaba Cloud M
 is a software consultant specializing in the Microsoft technology stack including Azure, BizTalk, ASP.Net, MVC, WCF and SQL Server with experience in a wide range of industries including banking, telecommunications and health care in New Zealand, Europe, Australia, and the United States. He has a Bachelors of Information and Computer Science, Masters of Computer Science and Engineering.
 
 ## Other books by the authors
-Building RESTful Web services with .NET Core [[Packt]](https://www.packtpub.com/application-development/building-restful-web-services-net-core) [[Amazon]] (https://www.amazon.com/Building-RESTful-Services-NET-Core-ebook/dp/B079DV3M94)
+Building RESTful Web services with .NET Core [[Packt]] (https://www.packtpub.com/application-development/building-restful-web-services-net-core) [[Amazon]] (https://www.amazon.com/Building-RESTful-Services-NET-Core-ebook/dp/B079DV3M94)
 
 Building Microservices with .NET Core [[Packt]](https://www.packtpub.com/web-development/building-microservices-net-core) [[Amazon]] (https://www.amazon.com/Building-Microservices-NET-Core-Reactive-ebook/dp/B01MQ52RM3)
 
