@@ -50,9 +50,9 @@ With the following software and hardware list you can run all code files present
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](http://www.packtpub.com/sites/default/files/downloads/9781789133646_ColorImages.pdf).
 
 ### Related products
-*  [[Packt]](https://www.packtpub.com/in/application-development/hands-domain-driven-design-net-core) [[Amazon]](https://www.amazon.com/dp/1788834097)
+*  Hands-On Domain-Driven Design with .NET Core [[Packt]](https://www.packtpub.com/in/application-development/hands-domain-driven-design-net-core) [[Amazon]](https://www.amazon.com/dp/1788834097)
 
-*  [[Packt]](https://www.packtpub.com/in/application-development/hands-network-programming-c-and-net-core) [[Amazon]](https://www.amazon.com/dp/1789340764)
+*  Hands-On Network Programming with C# and .NET Core [[Packt]](https://www.packtpub.com/in/application-development/hands-network-programming-c-and-net-core) [[Amazon]](https://www.amazon.com/dp/1789340764)
 
 ## Get to Know the Author
 **Gaurav Aroraa**
