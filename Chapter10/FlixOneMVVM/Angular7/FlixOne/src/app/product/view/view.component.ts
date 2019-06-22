@@ -11,14 +11,22 @@ declare var $;
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements OnInit {
-  productLIst: Observable<Product[]>;
+  // productLIst: Observable<Product[]>;
+  productLIst: Product[];
+
   constructor(private productService: ProductserviceService, private router: Router) { }
 
   ngOnInit() {
     this.loadProducts();
   }
   loadProducts() {
-    this.productLIst = this.productService.getProducts();
+    // this.productLIst = this.productService.getProducts();
+    this.productService.getProducts().subscribe(
+      p => {
+        this.productLIst = p;
+        return p;
+      }    );
+
   }
   // loadProducts() {
   //   this.productService.getProducts().subscribe(
