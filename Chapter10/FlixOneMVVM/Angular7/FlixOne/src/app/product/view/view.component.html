@@ -17,8 +17,8 @@
         <th>Action</th>
         </tr> 
         </thead>
-        <tbody>
-        <tr *ngFor="let product of productList | async; let i =index;">
+        <tbody>{{productList}}
+        <tr *ngFor="let product of productLIst; let i =index;">
           <td>{{i + 1}}</td>
           <td>{{product.productName}}</td>
           <td>{{product.productDescription}}</td>

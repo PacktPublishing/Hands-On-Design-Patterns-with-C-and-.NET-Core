@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import {ProductserviceService} from '../../services/productservice.service';
 import {Router} from '@angular/router';
 import { Product} from '../../product';
-declare var $;
 
 @Component({
   selector: 'app-view',
@@ -11,7 +10,6 @@ declare var $;
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements OnInit {
-  // productLIst: Observable<Product[]>;
   productLIst: Product[];
 
   constructor(private productService: ProductserviceService, private router: Router) { }
@@ -20,30 +18,17 @@ export class ViewComponent implements OnInit {
     this.loadProducts();
   }
   loadProducts() {
-    // this.productLIst = this.productService.getProducts();
-    this.productService.getProducts().subscribe(
-      p => {
-        this.productLIst = p;
-        return p;
-      }    );
-
+  this.productService.getProducts().subscribe(
+  p => {
+      this.productLIst = p;
+      return p;
+  });
   }
-  // loadProducts() {
-  //   this.productService.getProducts().subscribe(
-  //       productData => {
-  //         this.products = productData;
-  //         console.log(this.products);
-  //        // this.dataTable = $(this.Table.nativeElement);
-  //         // setTimeout(() => {this.dataTable.DataTable(); }, 2000);
-  //       }
-  //   );
-  // }
-
   getNavigation(link, id) {
     if (id === '')  {
-        this.router.navigate([link]);
+      this.router.navigate([link]);
     } else {
-        this.router.navigate([link + '/' + id]);
+      this.router.navigate([link + '/' + id]);
     }
-}
+  }
 }

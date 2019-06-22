@@ -19,9 +19,9 @@ export class ReadComponent implements OnInit {
     this.loadProductDetails(this.productID);
   }
   loadProductDetails(productID) {
-    this.productService.getProductDetails(productID).subscribe(product => {
-      this.productData = product;
-    });
+    // this.productService.getProductDetails(productID).subscribe(product => {
+    //   this.productData = product;
+    // });
   }
 
   navigation(link) {

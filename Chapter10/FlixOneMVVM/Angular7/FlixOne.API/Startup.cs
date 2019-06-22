@@ -34,14 +34,15 @@ namespace FlixOne.API
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            services.AddCors(options =>
-            {
-                options.AddDefaultPolicy(
-                    builder =>
-                    {
-                        builder.WithOrigins().AllowAnyHeader().AllowAnyMethod();
-                    });
-            });
+            //services.AddCors(options =>
+            //{
+            //    options.AddDefaultPolicy(
+            //        builder =>
+            //        {
+            //            builder.WithOrigins().AllowAnyHeader().AllowAnyMethod();
+            //        });
+            //});
+            services.AddCors();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddTransient<IProductRepository, ProductRepository>();
@@ -53,7 +54,7 @@ namespace FlixOne.API
             //Register Swagger
             services.AddSwaggerGen(swagger =>
             {
-                swagger.SwaggerDoc("v1", new Info {Title = "Product APIs", Version = "v1"});
+                swagger.SwaggerDoc("v1", new Info { Title = "Product APIs", Version = "v1" });
                 swagger.DescribeAllParametersInCamelCase();
                 swagger.DescribeAllEnumsAsStrings();
                 // Set the comments path for the Swagger JSON and UI.
@@ -70,10 +71,12 @@ namespace FlixOne.API
                 app.UseDeveloperExceptionPage();
             else
                 app.UseExceptionHandler("/Home/Error");
-            app.UseCors();
+
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseCors(o =>
+                o.AllowAnyOrigin()
+                    .AllowAnyMethod());
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
