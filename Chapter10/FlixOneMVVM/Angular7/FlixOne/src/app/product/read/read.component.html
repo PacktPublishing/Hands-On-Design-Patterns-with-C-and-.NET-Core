@@ -1,22 +1,36 @@
 <div class="container-fluid">
   <div class="row">
+    <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12">
+      <h2>Product Detail for: <code>{{productData.productName}}</code></h2>
+    </div>
+  </div>
+  <br />
+  <div class="row">
     <div class="col-12 col-lg-12 col-md-12 sol-sm-12">
       <table class="table table-striped">
         <tr>
           <td>Name</td>
-          <td>{{productData['p_name']}}</td>
+          <td>{{productData.productName}}</td>
         </tr>
         <tr>
           <td>Description</td>
-          <td>{{productData['p_description']}}</td>
+          <td>{{productData.productDescription}}</td>
         </tr>
         <tr>
           <td>Price</td>
-          <td>{{productData['p_price']}}</td>
+          <td>Rs. {{productData.productPrice}}</td>
         </tr>
+        <tr>
+            <td>Category</td>
+            <td>{{productData.categoryName}}</td>
+          </tr>
+          <tr>
+              <td>Cat. Desc.</td>
+              <td>{{productData.categoryDescription}}</td>
+            </tr>
       </table>
       <br>
-      <button class="btn btn-warning" (click)="navigation('')">Go Back</button>
+      <button class="btn btn-warning" (click)="navigation('')">Go To Product Listing</button>
     </div>
   </div>
 </div>

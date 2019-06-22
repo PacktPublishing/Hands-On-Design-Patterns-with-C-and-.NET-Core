@@ -1,4 +1,10 @@
 <div class="container">
+    <div class="row">
+        <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12">
+          <h2>Product Listing</h2>
+        </div>
+      </div>
+      <br>
   <div class="row">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12">
       <button class="btn btn-success" (click)="getNavigation('create', '')">Create New Product</button>
@@ -7,26 +13,30 @@
   <br>
   <div class="row">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12">
-      <table #productsTable class="display" style="width:100%">
-        <thead>
+      <table class="table table-striped" >
+        <thead class="thead-dark">
         <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Action</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Cat. Name</th>
+        <th scope="col">Cat. Desc.</th>
+        <!-- <th scope="col">Image</th> -->
+        <th scope="col">Price</th>
+        <th></th>
         </tr> 
         </thead>
-        <tbody>{{productList}}
-        <tr *ngFor="let product of productLIst; let i =index;">
-          <td>{{i + 1}}</td>
+        <tbody>
+        <tr *ngFor="let product of productList;">
           <td>{{product.productName}}</td>
           <td>{{product.productDescription}}</td>
-          <td>$ {{product.productPrice}}</td>
+          <td>{{product.categoryName}}</td>
+          <td>{{product.categoryDescription}}</td>
+          <!-- <td><img src="data:image/png;base64, {{product.productImage}}" alt="{{product.productName}}" /></td> -->
+          <td>Rs. {{product.productPrice}}</td>
           <td>
-            <button type="button" class="btn btn-success" (click)="getNavigation('view', product.p_id)">View</button>
-            <button type="button" class="btn btn-warning" (click)="getNavigation('update', product.p_id)">Edit</button>
-            <button type="button" class="btn btn-danger">Delete</button>
+            <button type="button" class="btn btn-success btn-sm" (click)="getNavigation('view', product.productId)">View </button>
+            <button type="button" class="btn btn-warning btn-sm" (click)="getNavigation('update', product.productId)">Edit </button>
+            <button type="button" class="btn btn-danger btn-sm  ">Delete</button>
           </td>
         </tr>
         </tbody>

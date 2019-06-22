@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import {ProductserviceService} from '../../services/productservice.service';
 import {Router} from '@angular/router';
@@ -10,9 +11,9 @@ import { Product} from '../../product';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements OnInit {
-  productLIst: Product[];
+  productList: Product[];
 
-  constructor(private productService: ProductserviceService, private router: Router) { }
+  constructor(private productService: ProductserviceService, private router: Router, private domSanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.loadProducts();
@@ -20,9 +21,8 @@ export class ViewComponent implements OnInit {
   loadProducts() {
   this.productService.getProducts().subscribe(
   p => {
-      this.productLIst = p;
-      return p;
-  });
+      this.productList = p;
+      });
   }
   getNavigation(link, id) {
     if (id === '')  {

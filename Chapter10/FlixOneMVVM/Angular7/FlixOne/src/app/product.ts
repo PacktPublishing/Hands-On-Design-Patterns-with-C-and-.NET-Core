@@ -3,7 +3,6 @@ export class Product {
     productName: string;
     productDescription: string;
     productImage: string;
-    price: number;
     productPrice: number;
     categoryId: string;
     categoryName: string;
