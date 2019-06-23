@@ -74,9 +74,15 @@ namespace FlixOne.API
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            //This is for Demo purpose
+            //in real world application, it should be as per 
+            //requirements
             app.UseCors(o =>
                 o.AllowAnyOrigin()
-                    .AllowAnyMethod());
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials()
+                );
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -2,6 +2,7 @@
 using System.Linq;
 using FlixOne.API.Models;
 using FlixOne.API.Persistence;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FlixOne.API.Controllers
@@ -46,6 +47,7 @@ namespace FlixOne.API.Controllers
         /// <param name="productvm"></param>
         /// <returns></returns>
         [HttpPost]
+        [Produces("application/json")]
         [Route("addproduct")]
         public IActionResult Post([FromBody] ProductViewModel productvm)
         {
