@@ -28,7 +28,7 @@ export class CreateComponent implements OnInit {
       categoryId: '891872e6-5824-4096-ad42-b67408cddba0'
     };
     this.productService.createProduct(p).subscribe(result => {
-      this.router.navigate(['']);
+      this.router.navigate(['/products']);
     });
   }
   navigation(link) {

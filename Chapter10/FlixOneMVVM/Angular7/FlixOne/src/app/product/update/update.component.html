@@ -1,3 +1,45 @@
-<p>
-  update works!
-</p>
+<h4>Edit Product: <code>{{productData.productName}}</code></h4>
+<hr />
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-4 col-lg-4 col-md-4 sol-sm-4">
+        <form [formGroup]="productForm" (ngSubmit)="saveProduct(productForm.value)">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" class="form-control" placeholder="Enter Product Name" formControlName="name" required value="{{productData.productName}}">
+            <div class="alert-danger" *ngIf="!productForm.controls['name'].valid && (productForm.controls['name'].touched)">
+              <div [hidden]="!productForm.controls['name'].errors.required">
+                Name is required.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Desc</label>
+            <input type="text" class="form-control" placeholder="Description" formControlName="desc" required value="{{productData.productDescription}}">
+            <div class="alert-danger" *ngIf="!productForm.controls['desc'].valid && (productForm.controls['desc'].touched)">
+              <div [hidden]="!productForm.controls['desc'].errors.required">
+                Description is required.
+              </div>
+              <div [hidden]="!productForm.controls['desc'].errors.minlength">
+                Description must be have 10 character length.
+              </div>
+              <div [hidden]="!productForm.controls['desc'].errors.maxlength">
+                Description must be have 1000 character length.
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Price</label>
+            <input type="number" class="form-control" placeholder="price" formControlName="price" required value="{{productData.productPrice}}">
+            <div class="alert-danger" *ngIf="!productForm.controls['price'].valid && (productForm.controls['price'].touched)">
+              <div [hidden]="!productForm.controls['price'].errors.required">
+                Price is required.
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary  btn-sm" [disabled]="!productForm.valid">Save</button>
+          <button class="btn btn-danger btn-sm" (click)="navigation('/products')">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>

@@ -20,7 +20,7 @@ export class ProductserviceService {
     return this.http.get<Product[]>(this.apiurl + 'productlist');
   }
 getProductDetails(id) {
-  return this.http.get(this.apiurl + 'product/' + id);
+  return this.http.get<Product>(this.apiurl + 'product/' + id);
 }
 createProduct(data) {
   console.log(JSON.stringify(data));
@@ -28,13 +28,13 @@ createProduct(data) {
   JSON.stringify(data),
   this.httpOptions);
 }
-updateProduct(data) {
-    return this.http.post<Product>(this.apiurl + 'updateproduct/',
+updateProduct(id, data) {
+    return this.http.put<Product>(this.apiurl + 'updateproduct/' + id,
     JSON.stringify(data),
     this.httpOptions);
 }
-deleteProduct(id) {
-  return this.http.get(this.apiurl + 'deleteproduct/' + id);
+deleteProduct(id: string) {
+  return this.http.delete(this.apiurl + 'deleteproduct/' + id);
 }
 
 }

@@ -9,6 +9,7 @@ import { ViewComponent } from './product/view/view.component';
 import { CreateComponent } from './product/create/create.component';
 import { UpdateComponent } from './product/update/update.component';
 import { ReadComponent } from './product/read/read.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ReadComponent } from './product/read/read.component';
     ViewComponent,
     CreateComponent,
     UpdateComponent,
-    ReadComponent
+    ReadComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12">
-          <h2>Product Listing</h2>
+          <h4>Product Listing</h4>
         </div>
       </div>
-      <br>
+      <hr />
   <div class="row">
     <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xl-12 col-xs-12">
       <button class="btn btn-success" (click)="getNavigation('create', '')">Create New Product</button>
@@ -36,7 +36,7 @@
           <td>
             <button type="button" class="btn btn-success btn-sm" (click)="getNavigation('view', product.productId)">View </button>
             <button type="button" class="btn btn-warning btn-sm" (click)="getNavigation('update', product.productId)">Edit </button>
-            <button type="button" class="btn btn-danger btn-sm  ">Delete</button>
+            <button type="button" class="btn btn-danger btn-sm"  (click)="deleteProduct(product.productId)">Delete</button>
           </td>
         </tr>
         </tbody>

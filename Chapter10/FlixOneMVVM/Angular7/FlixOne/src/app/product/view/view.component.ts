@@ -24,6 +24,11 @@ export class ViewComponent implements OnInit {
       this.productList = p;
       });
   }
+  deleteProduct(id: string) {
+    this.productService.deleteProduct(id).subscribe(p => {
+    this.loadProducts();
+    });
+  }
   getNavigation(link, id) {
     if (id === '')  {
       this.router.navigate([link]);

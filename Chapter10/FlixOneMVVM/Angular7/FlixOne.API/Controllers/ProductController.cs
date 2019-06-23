@@ -79,6 +79,7 @@ namespace FlixOne.API.Controllers
 
             product.Name = productvm.ProductName;
             product.Description = productvm.ProductDescription;
+            product.Price = productvm.ProductPrice;
             _productRepository.Update(product);
             return new NoContentResult();
         }
