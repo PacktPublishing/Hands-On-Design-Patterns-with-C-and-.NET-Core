@@ -1,5 +1,5 @@
 {
-  "name": "FlixOne",
+  "name": "flixone",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -33,7 +33,7 @@
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.800.3",
+    "@angular-devkit/build-angular": "^0.901.0",
     "@angular/cli": "^8.0.3",
     "@angular/compiler-cli": "^8.0.1",
     "@angular/language-service": "^6.0.0",
