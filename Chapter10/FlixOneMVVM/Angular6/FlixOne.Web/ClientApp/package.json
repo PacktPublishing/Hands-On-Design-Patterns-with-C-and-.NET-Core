@@ -27,7 +27,7 @@
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
     "extend": "^3.0.2",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "popper.js": "^1.14.3",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
