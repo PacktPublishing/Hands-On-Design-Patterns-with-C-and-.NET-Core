@@ -30,7 +30,13 @@ namespace MyPets
             PetFeeder.FeedPet(cat, new Fish());
         }
 
+        public string MyPets()
+        {
+            var pets = string.Concat(Pets.Select(p => $"{p.MyPet()} {Environment.NewLine}"));
 
-        public string MyPets() => $"{OwnerName} owns {Environment.NewLine}{string.Concat(Pets.Select(p => $"{p.MyPet()} {Environment.NewLine}"))}";
+            var ret = $"{OwnerName}: {Environment.NewLine} {pets}";
+            
+            return ret;
+        }
     }
 }
