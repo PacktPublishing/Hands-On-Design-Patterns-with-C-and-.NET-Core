@@ -1,7 +1,3 @@
-## [Get this title for $10 on Packt's Spring Sale](https://www.packt.com/B10399?utm_source=github&utm_medium=packt-github-repo&utm_campaign=spring_10_dollar_2022)
------
-For a limited period, all eBooks and Videos are only $10. All the practical content you need \- by developers, for developers
-
 # Hands-On Design Patterns with C# and .NET Core
 
 <a href="https://www.packtpub.com/application-development/hands-design-patterns-c-and-net-core"><img src="https://www.packtpub.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/b/1/b10399_mockupcover_new.png" alt="coverpage" height="256px" align="right"></a>
